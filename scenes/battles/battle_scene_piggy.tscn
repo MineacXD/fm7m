@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://dccb5rfmhq4ru"]
+
+[ext_resource type="Script" uid="uid://bd3uyplvbuola" path="res://scenes/battles/battle_scene_piggy.gd" id="1_7t2bg"]
+[ext_resource type="PackedScene" uid="uid://c7j4jfrualyv6" path="res://scenes/characters/player_battle.tscn" id="1_w03jl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7t2bg"]
+size = Vector2(16, 512)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vfpt1"]
+size = Vector2(640, 16)
+
+[node name="battle_scene_piggy" type="Node2D" unique_id=1035354395]
+script = ExtResource("1_7t2bg")
+
+[node name="BattleTimer" type="Timer" parent="." unique_id=1571116948]
+wait_time = 20.0
+autostart = true
+
+[node name="PiggySpawnTimer" type="Timer" parent="." unique_id=1353779608]
+autostart = true
+
+[node name="player_battle" parent="." unique_id=591197528 instance=ExtResource("1_w03jl")]
+position = Vector2(88, 232)
+
+[node name="Limits" type="StaticBody2D" parent="." unique_id=532368460]
+
+[node name="Right" type="CollisionShape2D" parent="Limits" unique_id=1924075873]
+position = Vector2(-8, 240)
+shape = SubResource("RectangleShape2D_7t2bg")
+
+[node name="Left" type="CollisionShape2D" parent="Limits" unique_id=927769206]
+position = Vector2(648, 240)
+shape = SubResource("RectangleShape2D_7t2bg")
+
+[node name="Up" type="CollisionShape2D" parent="Limits" unique_id=928594590]
+position = Vector2(320, -8)
+shape = SubResource("RectangleShape2D_vfpt1")
+
+[node name="Down" type="CollisionShape2D" parent="Limits" unique_id=1911052629]
+position = Vector2(320, 488)
+shape = SubResource("RectangleShape2D_vfpt1")
+
+[node name="TimeDisplay" type="Label" parent="." unique_id=1372435179]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[connection signal="timeout" from="BattleTimer" to="." method="_on_battle_timer_timeout"]
+[connection signal="timeout" from="PiggySpawnTimer" to="." method="_on_bullet_spawn_timer_timeout"]

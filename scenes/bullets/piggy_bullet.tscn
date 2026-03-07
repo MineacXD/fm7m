@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://b7p0nqig54yqc"]
+
+[ext_resource type="Texture2D" uid="uid://dw0wlrt3q1msj" path="res://sprites/characters/piggyRoblox.png" id="1_thsc5"]
+[ext_resource type="Script" uid="uid://ggx56mbxqfdd" path="res://scripts/bullets/piggy_bullet.gd" id="1_xbei5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xbei5"]
+size = Vector2(80, 232)
+
+[node name="piggy_bullet" type="CharacterBody2D" unique_id=1844857697]
+script = ExtResource("1_xbei5")
+
+[node name="PiggyRoblox" type="Sprite2D" parent="." unique_id=206297109]
+position = Vector2(700, 92)
+texture = ExtResource("1_thsc5")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=825740655]
+position = Vector2(704, 192)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1124042509]
+position = Vector2(-4, -56)
+shape = SubResource("RectangleShape2D_xbei5")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_entered"]

@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://b6hqxqycs1d7"]
+
+[ext_resource type="Script" uid="uid://pknofgbkj3vm" path="res://scripts/bullets/pig_bullet.gd" id="1_lxvl0"]
+[ext_resource type="Texture2D" uid="uid://bvsm82f264noo" path="res://sprites/characters/pig.png" id="2_uvdg6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lxvl0"]
+size = Vector2(114, 100)
+
+[node name="pig_bullet" type="CharacterBody2D" unique_id=1654416812]
+script = ExtResource("1_lxvl0")
+
+[node name="Pig" type="Sprite2D" parent="." unique_id=1773155159]
+position = Vector2(713, 68)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_uvdg6")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1321505195]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=683028789]
+position = Vector2(722, 67)
+shape = SubResource("RectangleShape2D_lxvl0")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_entered"]

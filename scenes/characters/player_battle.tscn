@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://c7j4jfrualyv6"]
+
+[ext_resource type="Script" uid="uid://x3wnr2tgtgdy" path="res://player_battle.gd" id="1_teu5r"]
+[ext_resource type="Texture2D" uid="uid://cpfcx53uoroq4" path="res://sprites/characters/Ena_School_Uniform_chibi.png" id="2_p47ba"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_teu5r"]
+size = Vector2(43, 92)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p47ba"]
+size = Vector2(27, 83)
+
+[node name="player_battle" type="CharacterBody2D" unique_id=591197528]
+motion_mode = 1
+script = ExtResource("1_teu5r")
+
+[node name="EnaSchoolUniformChibi" type="Sprite2D" parent="." unique_id=198652348]
+position = Vector2(4.5474735e-13, 4.5474735e-13)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_p47ba")
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1231584631]
+position = Vector2(0.5, 22)
+shape = SubResource("RectangleShape2D_teu5r")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=709475324 groups=["player"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=811771434]
+position = Vector2(0.5, 17.5)
+shape = SubResource("RectangleShape2D_p47ba")
