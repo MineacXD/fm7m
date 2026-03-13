@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://bsm53taai67fa" path="res://scenes/characters/piggy.gd" id="1_q3r7w"]
 [ext_resource type="Texture2D" uid="uid://68q4ce0b5hyj" path="res://sprites/icons/interact_available.png" id="2_u5u75"]
 [ext_resource type="Texture2D" uid="uid://cpfcx53uoroq4" path="res://sprites/characters/Ena_School_Uniform_chibi.png" id="4_v6sy0"]
+[ext_resource type="Texture2D" uid="uid://dugnlvsloo5p1" path="res://sprites/characters/Mafuyu_School_Uniform_chibi.png" id="5_2evnb"]
 [ext_resource type="Texture2D" uid="uid://y1hooddhcb1u" path="res://sprites/gui/dialogue_box_text.png" id="5_8x0il"]
 [ext_resource type="Texture2D" uid="uid://dj5atqfgyxp1i" path="res://sprites/gui/dialogue_box_name.png" id="6_2evnb"]
 [ext_resource type="Texture2D" uid="uid://cxeubj112yf5h" path="res://sprites/icons/dialogue_next.png" id="7_s5br2"]
@@ -42,6 +43,11 @@ visible = false
 position = Vector2(142, 178)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("4_v6sy0")
+
+[node name="MafuyuSchoolUniformChibi" type="Sprite2D" parent="Dialogue" unique_id=1302031376]
+position = Vector2(142, 178)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_2evnb")
 
 [node name="Pig" type="Sprite2D" parent="Dialogue" unique_id=1743159114]
 position = Vector2(132, 234)

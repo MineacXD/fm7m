@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://68q4ce0b5hyj" path="res://sprites/icons/interact_available.png" id="7_saicw"]
 [ext_resource type="Texture2D" uid="uid://cpfcx53uoroq4" path="res://sprites/characters/Ena_School_Uniform_chibi.png" id="8_bowtl"]
 [ext_resource type="Texture2D" uid="uid://y1hooddhcb1u" path="res://sprites/gui/dialogue_box_text.png" id="9_em51r"]
+[ext_resource type="Texture2D" uid="uid://dugnlvsloo5p1" path="res://sprites/characters/Mafuyu_School_Uniform_chibi.png" id="10_em51r"]
 [ext_resource type="Texture2D" uid="uid://dj5atqfgyxp1i" path="res://sprites/gui/dialogue_box_name.png" id="10_xrt64"]
 [ext_resource type="Texture2D" uid="uid://cxeubj112yf5h" path="res://sprites/icons/dialogue_next.png" id="11_3s5up"]
 [ext_resource type="Script" uid="uid://bsm53taai67fa" path="res://scenes/characters/piggy.gd" id="15_6pgv2"]
@@ -22,7 +23,7 @@
 size = Vector2(20, 65)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yfivt"]
-size = Vector2(304, 24)
+size = Vector2(232, 24)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_u41xh"]
 texture = ExtResource("3_ejywx")
@@ -3257,7 +3258,7 @@ position = Vector2(1320, 336)
 shape = SubResource("RectangleShape2D_yfivt")
 
 [node name="Exit_pond" type="CollisionShape2D" parent="map layer 0/Area2D3" unique_id=1639997250]
-position = Vector2(-72, 164)
+position = Vector2(-36, 164)
 shape = SubResource("RectangleShape2D_yfivt")
 
 [node name="map layer 1" type="TileMapLayer" parent="." unique_id=1004179322]
@@ -3327,6 +3328,11 @@ visible = false
 position = Vector2(142, 178)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("8_bowtl")
+
+[node name="MafuyuSchoolUniformChibi" type="Sprite2D" parent="map layer 3/Piggy2/Dialogue" unique_id=1124938099]
+position = Vector2(142, 178)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("10_em51r")
 
 [node name="Pig" type="Sprite2D" parent="map layer 3/Piggy2/Dialogue" unique_id=1743159114]
 position = Vector2(132, 234)
@@ -3432,6 +3438,11 @@ visible = false
 position = Vector2(142, 178)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("8_bowtl")
+
+[node name="MafuyuSchoolUniformChibi" type="Sprite2D" parent="ChairArea/Dialogue" unique_id=1544150293]
+position = Vector2(142, 178)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("10_em51r")
 
 [node name="DialogueBoxText" type="Sprite2D" parent="ChairArea/Dialogue" unique_id=205149667]
 texture_filter = 1

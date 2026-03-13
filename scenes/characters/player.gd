@@ -4,7 +4,17 @@ extends CharacterBody2D
 const SPEED = 130.0
 const JUMP_VELOCITY = -230.0
 var is_in_water = false
+var skin
 
+func _ready() -> void:
+	if Global.skinChange:
+		$MafuyuSchoolUniformChibi.visible = true
+		$EnaSchoolUniformChibi.visible = false
+		skin = $MafuyuSchoolUniformChibi
+	else:
+		$MafuyuSchoolUniformChibi.visible = false
+		$EnaSchoolUniformChibi.visible = true
+		skin = $EnaSchoolUniformChibi
 ## updates the z_index global variable so other scripts can fetch it.
 func setZindex():
 	Global.z_index_player = z_index
@@ -23,9 +33,9 @@ func _physics_process(delta: float) -> void:
 	var direction := Input.get_axis("ui_left", "ui_right")
 	
 	if Input.is_action_just_pressed("ui_right"):
-		$EnaSchoolUniformChibi.flip_h = true
+		skin.flip_h = true
 	elif Input.is_action_just_pressed("ui_left"):
-		$EnaSchoolUniformChibi.flip_h = false
+		skin.flip_h = false
 	if direction:
 		velocity.x = direction * SPEED
 	else:

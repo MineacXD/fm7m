@@ -12,6 +12,16 @@ var displaying_dialogue = false
 var player_near = false
 #dialogue index number
 var number = 0
+var localSkin
+
+func _ready() -> void:
+	# was supposed to be a skin render func
+	if Global.skinChange:
+		localSkin = $Dialogue/MafuyuSchoolUniformChibi
+		$Dialogue/EnaSchoolUniformChibi.visible = false
+	else:
+		localSkin = $Dialogue/EnaSchoolUniformChibi
+		$Dialogue/MafuyuSchoolUniformChibi.visible = false
 
 func loadBattle():
 	var TheRoot = get_node("/root")  #need this as get_node will stop work once you remove your self from the Tree
@@ -29,9 +39,9 @@ func show_next_dialogue():
 	$Dialogue/Character.text = dialogue_character_list[number]
 	if dialogue_character_list[number] == "Piggy":
 		$Dialogue/PiggyRoblox.visible = true
-		$Dialogue/EnaSchoolUniformChibi.visible = false
+		localSkin.visible = false
 	elif dialogue_character_list[number] == "Cheo":
-		$Dialogue/EnaSchoolUniformChibi.visible = true
+		localSkin.visible = true
 		$Dialogue/PiggyRoblox.visible = false
 	number = number + 1
 
@@ -40,9 +50,9 @@ func show_post_dialogue():
 	$Dialogue/Character.text = post_dialogue_character_list[number]
 	if post_dialogue_character_list[number] == "Piggy":
 		$Dialogue/PiggyRoblox.visible = true
-		$Dialogue/EnaSchoolUniformChibi.visible = false
+		localSkin.visible = false
 	elif post_dialogue_character_list[number] == "Cheo":
-		$Dialogue/EnaSchoolUniformChibi.visible = true
+		localSkin.visible = true
 		$Dialogue/PiggyRoblox.visible = false
 	number = number + 1
 			
@@ -51,9 +61,9 @@ func show_failed_dialogue():
 	$Dialogue/Character.text = failed_dialogue_character_list[number]
 	if failed_dialogue_character_list[number] == "Piggy":
 		$Dialogue/PiggyRoblox.visible = true
-		$Dialogue/EnaSchoolUniformChibi.visible = false
+		localSkin.visible = false
 	elif failed_dialogue_character_list[number] == "Cheo":
-		$Dialogue/EnaSchoolUniformChibi.visible = true
+		localSkin.visible = true
 		$Dialogue/PiggyRoblox.visible = false
 	number = number + 1
 

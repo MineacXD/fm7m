@@ -12,15 +12,25 @@ var displaying_dialogue = false
 #dialogue index number
 var number = 0
 var player_near = false
+var localSkin
 
+func _ready() -> void:
+	# was supposed to be a skin render func
+	if Global.skinChange:
+		localSkin = $Dialogue/MafuyuSchoolUniformChibi
+		$Dialogue/EnaSchoolUniformChibi.visible = false
+	else:
+		localSkin = $Dialogue/EnaSchoolUniformChibi
+		$Dialogue/MafuyuSchoolUniformChibi.visible = false
+		
 func show_next_dialogue():
 	$Dialogue/Dialogue_body.text = dialogue_list[number]
 	$Dialogue/Character.text = dialogue_character_list[number]
 	if dialogue_character_list[number] == "May":
 		$Dialogue/MizukiSchoolUniformChibi.visible = true
-		$Dialogue/EnaSchoolUniformChibi.visible = false
+		localSkin.visible = false
 	elif dialogue_character_list[number] == "Cheo":
-		$Dialogue/EnaSchoolUniformChibi.visible = true
+		localSkin.visible = true
 		$Dialogue/MizukiSchoolUniformChibi.visible = false
 	number = number + 1
 
@@ -29,9 +39,9 @@ func show_post_dialogue():
 	$Dialogue/Character.text = post_dialogue_character_list[number]
 	if post_dialogue_character_list[number] == "May":
 		$Dialogue/MizukiSchoolUniformChibi.visible = true
-		$Dialogue/EnaSchoolUniformChibi.visible = false
+		localSkin.visible = false
 	elif post_dialogue_character_list[number] == "Cheo":
-		$Dialogue/EnaSchoolUniformChibi.visible = true
+		localSkin.visible = true
 		$Dialogue/MizukiSchoolUniformChibi.visible = false
 	number = number + 1
 
@@ -40,9 +50,9 @@ func show_failed_dialogue():
 	$Dialogue/Character.text = failed_dialogue_character_list[number]
 	if failed_dialogue_character_list[number] == "May":
 		$Dialogue/MizukiSchoolUniformChibi.visible = true
-		$Dialogue/EnaSchoolUniformChibi.visible = false
+		localSkin.visible = false
 	elif failed_dialogue_character_list[number] == "Cheo":
-		$Dialogue/EnaSchoolUniformChibi.visible = true
+		localSkin.visible = true
 		$Dialogue/MizukiSchoolUniformChibi.visible = false
 	number = number + 1
 	
@@ -82,21 +92,21 @@ func _process(delta: float) -> void:
 				else:
 					show_failed_dialogue()
 	else:
-		if Input.is_action_just_pressed("interact_enviroment"):
-			if !$Dialogue.visible:
-				$Dialogue.visible = true
-				show_next_dialogue()
-			elif number >= dialogue_list.size():
-				$Dialogue.visible = false
-				QuestTracker.QuestPorkStarted = true
-				number = 0
-			else:
-				show_next_dialogue()
+		if player_near:
+			if Input.is_action_just_pressed("interact_enviroment"):
+				if !$Dialogue.visible:
+					$Dialogue.visible = true
+					show_next_dialogue()
+				elif number >= dialogue_list.size():
+					$Dialogue.visible = false
+					QuestTracker.QuestPorkStarted = true
+					number = 0
+				else:
+					show_next_dialogue()
 func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group("player"):
 		$InteractAvailable.visible = true
 		player_near = true
-
 
 func _on_area_exited(area: Area2D) -> void:
 	if area.is_in_group("player"):

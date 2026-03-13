@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://bntte14laynux"]
+
+[ext_resource type="Script" uid="uid://dt0qd55202wwy" path="res://title_screen.gd" id="1_cvbcs"]
+[ext_resource type="Texture2D" uid="uid://cmrdos2nsh4xm" path="res://sprites/gui/logo.png" id="2_detue"]
+
+[node name="TitleScreen" type="Control" unique_id=864456765]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cvbcs")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=448956601]
+layout_mode = 0
+offset_right = 638.0
+offset_bottom = 480.0
+color = Color(0.89411765, 0.6039216, 0.44705883, 1)
+
+[node name="BoxContainer" type="BoxContainer" parent="." unique_id=1411380539]
+layout_mode = 0
+offset_left = 225.0
+offset_top = 273.0
+offset_right = 414.0
+offset_bottom = 385.0
+alignment = 1
+vertical = true
+
+[node name="Play" type="Button" parent="BoxContainer" unique_id=1898952961]
+layout_mode = 2
+text = "Play"
+
+[node name="ChangeSkin" type="Button" parent="BoxContainer" unique_id=1110209300]
+layout_mode = 2
+text = "Current skin: enanan"
+
+[node name="Logo" type="Sprite2D" parent="." unique_id=363697568]
+texture_filter = 1
+position = Vector2(336, 120)
+scale = Vector2(2, 2)
+texture = ExtResource("2_detue")
+
+[connection signal="pressed" from="BoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="BoxContainer/ChangeSkin" to="." method="_on_change_skin_pressed"]

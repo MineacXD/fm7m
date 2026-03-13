@@ -15,7 +15,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="find my 7 maylings"
-run/main_scene="res://scenes/maps/map01.tscn"
+run/main_scene="uid://bntte14laynux"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
