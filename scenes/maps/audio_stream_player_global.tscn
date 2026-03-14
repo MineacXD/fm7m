@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://d3qgfoxhy1cqa"]
+
+[ext_resource type="Script" uid="uid://d1t2xpqjqwdsc" path="res://scripts/maps/audio_stream_player_global.gd" id="1_b1wca"]
+
+[sub_resource type="AudioStreamMP3" id="AudioStreamMP3_bmmm4"]
+
+[node name="AudioStreamPlayerGlobal" type="AudioStreamPlayer" unique_id=1542220283]
+stream = SubResource("AudioStreamMP3_bmmm4")
+volume_db = -13.255
+autoplay = true
+script = ExtResource("1_b1wca")

@@ -9,9 +9,9 @@ func returnToPreviousScene():
 
 	TheRoot.remove_child(ThisScene)
 	ThisScene.call_deferred("free")
-	
 	var NextScene = Global.PreviousScreen
 	TheRoot.add_child(NextScene)
+	AudioStreamPlayerGlobal.stream_paused = false
 	Global.BattleFinished = true
 	
 

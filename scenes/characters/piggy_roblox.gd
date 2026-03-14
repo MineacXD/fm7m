@@ -27,6 +27,7 @@ func loadBattle():
 	var TheRoot = get_node("/root")  #need this as get_node will stop work once you remove your self from the Tree
 	var ThisScene = get_node("/root/start")
 	Global.PreviousScreen = ThisScene  #variable in Autoload script
+	AudioStreamPlayerGlobal.stream_paused = true
 	#print(ThisScene)
 	#ThisScene.print_tree()
 	TheRoot.remove_child(ThisScene)
@@ -82,11 +83,13 @@ func _process(delta: float) -> void:
 		if player_near:
 			if !$Dialogue.visible:
 					$Dialogue.visible = true
+					Global.PlayerBusy = true
 					show_post_dialogue()
 			if Input.is_action_just_pressed("interact_enviroment"):
 				if number >= post_dialogue_list.size():
 					$Dialogue.visible = false
 					Global.BattleFinished = false
+					Global.PlayerBusy = false
 					number = 0
 					queue_free()
 				else:
@@ -95,10 +98,12 @@ func _process(delta: float) -> void:
 		if player_near:
 			if !$Dialogue.visible:
 				$Dialogue.visible = true
+				Global.PlayerBusy = true
 				show_failed_dialogue()
 			if Input.is_action_just_pressed("interact_enviroment"):
 				if number >= failed_dialogue_list.size():
 					$Dialogue.visible = false
+					Global.PlayerBusy = false
 					number = 0
 					Global.BattleFailed = false
 				else:
@@ -108,9 +113,11 @@ func _process(delta: float) -> void:
 			if Input.is_action_just_pressed("interact_enviroment"):
 				if !$Dialogue.visible:
 					$Dialogue.visible = true
+					Global.PlayerBusy = true
 					show_next_dialogue()
 				elif number >= dialogue_list.size():
 					$Dialogue.visible = false
+					Global.PlayerBusy = false
 					number = 0
 					loadBattle()
 				else:

@@ -45,9 +45,9 @@ position = Vector2(142, 178)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_dt64g")
 
-[node name="MafuyuSchoolUniformChibi" type="Sprite2D" parent="Dialogue" unique_id=1925052198]
-position = Vector2(213, 267)
-scale = Vector2(0.25, 0.25)
+[node name="MafuyuSchoolUniformChibi" type="Sprite2D" parent="Dialogue" unique_id=933991677]
+position = Vector2(142, 178)
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("5_dt64g")
 
 [node name="PiggyRoblox" type="Sprite2D" parent="Dialogue" unique_id=1748595018]

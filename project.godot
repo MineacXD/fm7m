@@ -17,12 +17,13 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 config/name="find my 7 maylings"
 run/main_scene="uid://bntte14laynux"
 config/features=PackedStringArray("4.6", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="uid://csibnuu3bvwth"
 
 [autoload]
 
 Global="*res://scripts/global/global.gd"
 QuestTracker="*uid://de5mexasv5ens"
+AudioStreamPlayerGlobal="*uid://d3qgfoxhy1cqa"
 
 [display]
 

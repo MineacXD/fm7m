@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bd3uyplvbuola" path="res://scenes/battles/battle_scene_piggy.gd" id="1_7t2bg"]
 [ext_resource type="PackedScene" uid="uid://c7j4jfrualyv6" path="res://scenes/characters/player_battle.tscn" id="1_w03jl"]
+[ext_resource type="AudioStream" uid="uid://cm3u07k456yw5" path="res://sounds/bgm/CirnoTheme.mp3" id="3_vfpt1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7t2bg"]
 size = Vector2(16, 512)
@@ -43,6 +44,11 @@ shape = SubResource("RectangleShape2D_vfpt1")
 [node name="TimeDisplay" type="Label" parent="." unique_id=1372435179]
 offset_right = 40.0
 offset_bottom = 23.0
+
+[node name="BattleTheme" type="AudioStreamPlayer" parent="." unique_id=45027452]
+stream = ExtResource("3_vfpt1")
+volume_db = -13.255
+autoplay = true
 
 [connection signal="timeout" from="BattleTimer" to="." method="_on_battle_timer_timeout"]
 [connection signal="timeout" from="PiggySpawnTimer" to="." method="_on_bullet_spawn_timer_timeout"]

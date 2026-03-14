@@ -7,6 +7,7 @@ var displaying_dialogue = false
 var number = 0
 var player_near = false
 var localSkin
+var bgm = preload("res://sounds/bgm/LoveIsSurvival.mp3")
 
 func _ready() -> void:
 	# was supposed to be a skin render func
@@ -16,6 +17,8 @@ func _ready() -> void:
 	else:
 		localSkin = $Dialogue/EnaSchoolUniformChibi
 		$ChairArea/Dialogue/MafuyuSchoolUniformChibi.visible = false
+	AudioStreamPlayerGlobal.stream = bgm
+	AudioStreamPlayerGlobal.play()
 
 func _process(_delta: float) -> void:
 	if QuestTracker.QuestPorkFinished:

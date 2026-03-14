@@ -9,6 +9,7 @@ func returnToPreviousScene():
 	ThisScene.call_deferred("free")
 	
 	var NextScene = Global.PreviousScreen
+	AudioStreamPlayerGlobal.stream_paused = false
 	TheRoot.add_child(NextScene)
 	
 	

@@ -73,10 +73,12 @@ func _process(delta: float) -> void:
 			if Input.is_action_just_pressed("interact_enviroment"):
 				if !$Dialogue.visible:
 					$Dialogue.visible = true
+					Global.PlayerBusy = true
 					show_post_dialogue()
 				elif number >= post_dialogue_list.size():
 					$Dialogue.visible = false
 					QuestTracker.QuestPorkFinished = true
+					Global.PlayerBusy = false
 					number = 0
 				else:
 					show_post_dialogue()
@@ -85,9 +87,11 @@ func _process(delta: float) -> void:
 			if Input.is_action_just_pressed("interact_enviroment"):
 				if !$Dialogue.visible:
 					$Dialogue.visible = true
+					Global.PlayerBusy = true
 					show_failed_dialogue()
 				elif number >= failed_dialogue_list.size():
 					$Dialogue.visible = false
+					Global.PlayerBusy = false
 					number = 0
 				else:
 					show_failed_dialogue()
@@ -96,10 +100,12 @@ func _process(delta: float) -> void:
 			if Input.is_action_just_pressed("interact_enviroment"):
 				if !$Dialogue.visible:
 					$Dialogue.visible = true
+					Global.PlayerBusy = true
 					show_next_dialogue()
 				elif number >= dialogue_list.size():
 					$Dialogue.visible = false
 					QuestTracker.QuestPorkStarted = true
+					Global.PlayerBusy = false
 					number = 0
 				else:
 					show_next_dialogue()

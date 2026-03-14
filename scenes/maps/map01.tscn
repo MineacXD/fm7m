@@ -23,7 +23,7 @@
 size = Vector2(20, 65)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yfivt"]
-size = Vector2(232, 24)
+size = Vector2(250, 24)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_u41xh"]
 texture = ExtResource("3_ejywx")
@@ -3254,11 +3254,11 @@ position = Vector2(576, 160)
 shape = SubResource("RectangleShape2D_bk7c1")
 
 [node name="Exit_cave" type="CollisionShape2D" parent="map layer 0/Area2D3" unique_id=1633889915]
-position = Vector2(1320, 336)
+position = Vector2(1302, 336)
 shape = SubResource("RectangleShape2D_yfivt")
 
 [node name="Exit_pond" type="CollisionShape2D" parent="map layer 0/Area2D3" unique_id=1639997250]
-position = Vector2(-36, 164)
+position = Vector2(-27, 164)
 shape = SubResource("RectangleShape2D_yfivt")
 
 [node name="map layer 1" type="TileMapLayer" parent="." unique_id=1004179322]
@@ -3399,6 +3399,16 @@ tile_map_data = PackedByteArray("AABKABcAAAADAAAAAABKABgAAAACAAAAAABMABkAAAACAAA
 tile_set = SubResource("TileSet_bk7c1")
 script = ExtResource("6_bk7c1")
 
+[node name="piggyRoblox" parent="." unique_id=1903526388 instance=ExtResource("16_saicw")]
+position = Vector2(1744, 376)
+
+[node name="Piggy1" parent="." unique_id=767842513 instance=ExtResource("6_aisj4")]
+position = Vector2(901, 327)
+
+[node name="Mayling" parent="." unique_id=2091287906 instance=ExtResource("5_yfivt")]
+z_index = 1
+position = Vector2(520, 159)
+
 [node name="Player" parent="." unique_id=703487689 instance=ExtResource("4_bk7c1")]
 position = Vector2(67, 179)
 
@@ -3407,16 +3417,6 @@ z_index = 5
 texture_filter = 1
 tile_map_data = PackedByteArray("AAD3/wwAAAAXAAAAAAD3/w0AAAAXAAAAAAD4/wwAAAAXAAAAAAD4/w0AAAAXAAAAAAD5/wwAAAAXAAAAAAD5/w0AAAAXAAAAAAD6/wwAAAAXAAAAAAD6/w0AAAAXAAAAAAD7/wwAAAAXAAAAAAD7/w0AAAAXAAAAAAD8/wwAAAAXAAAAAAD8/w0AAAAXAAAAAAD9/wwAAAAXAAAAAAD9/w0AAAAXAAAAAAD+/wwAAAAXAAAAAAD+/w0AAAAXAAAAAAD//wwAAAAXAAAAAAD//w0AAAAXAAAAAAD4/w4AAAAXAAAAAAD5/w4AAAAXAAAAAAD6/w4AAAAXAAAAAAD7/w4AAAAXAAAAAAD8/w4AAAAXAAAAAAD9/w4AAAAXAAAAAAD+/w4AAAAXAAAAAAD//w4AAAAXAAAAAAD6/w8AAAAXAAAAAAD7/w8AAAAXAAAAAAD8/w8AAAAXAAAAAAD9/w8AAAAXAAAAAAD+/w8AAAAXAAAAAAD//w8AAAAXAAAAAAD5/w8AAAAXAAAAAAD7/xAAAAAXAAAAAAD8/xAAAAAXAAAAAAD9/xAAAAAXAAAAAAD+/xAAAAAXAAAAAAA=")
 tile_set = SubResource("TileSet_ix06d")
-
-[node name="Mayling" parent="." unique_id=2091287906 instance=ExtResource("5_yfivt")]
-z_index = 1
-position = Vector2(520, 159)
-
-[node name="Piggy1" parent="." unique_id=767842513 instance=ExtResource("6_aisj4")]
-position = Vector2(901, 327)
-
-[node name="piggyRoblox" parent="." unique_id=1903526388 instance=ExtResource("16_saicw")]
-position = Vector2(1744, 376)
 
 [node name="ChairArea" type="Area2D" parent="." unique_id=1833235499]
 

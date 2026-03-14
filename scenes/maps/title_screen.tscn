@@ -35,11 +35,15 @@ text = "Play"
 layout_mode = 2
 text = "Current skin: enanan"
 
-[node name="Logo" type="Sprite2D" parent="." unique_id=363697568]
+[node name="Logo" type="Sprite2D" parent="BoxContainer" unique_id=363697568]
 texture_filter = 1
-position = Vector2(336, 120)
+position = Vector2(111, -153)
 scale = Vector2(2, 2)
 texture = ExtResource("2_detue")
 
+[node name="Timer" type="Timer" parent="." unique_id=415581848]
+wait_time = 5.5
+
 [connection signal="pressed" from="BoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="BoxContainer/ChangeSkin" to="." method="_on_change_skin_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

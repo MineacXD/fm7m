@@ -12,6 +12,7 @@ func returnToPreviousScene():
 	
 	var NextScene = Global.PreviousScreen
 	TheRoot.add_child(NextScene)
+	AudioStreamPlayerGlobal.stream_paused = false
 	Global.BattleFinished = true
 	
 
