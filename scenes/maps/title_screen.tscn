@@ -2,6 +2,9 @@
 
 [ext_resource type="Script" uid="uid://dt0qd55202wwy" path="res://title_screen.gd" id="1_cvbcs"]
 [ext_resource type="Texture2D" uid="uid://cmrdos2nsh4xm" path="res://sprites/gui/logo.png" id="2_detue"]
+[ext_resource type="FontFile" uid="uid://vptq7p52geve" path="res://sprites/aseprite.otf" id="2_pubem"]
+[ext_resource type="AudioStream" uid="uid://6csk844lxc8u" path="res://sounds/sfx/Scrolling.mp3" id="3_detue"]
+[ext_resource type="AudioStream" uid="uid://bil7rlrhwj8b6" path="res://sounds/sfx/OptionSelected.mp3" id="5_bx3wj"]
 
 [node name="TitleScreen" type="Control" unique_id=864456765]
 layout_mode = 3
@@ -22,17 +25,20 @@ color = Color(0.89411765, 0.6039216, 0.44705883, 1)
 layout_mode = 0
 offset_left = 225.0
 offset_top = 273.0
-offset_right = 414.0
-offset_bottom = 385.0
+offset_right = 423.0
+offset_bottom = 386.0
 alignment = 1
 vertical = true
 
 [node name="Play" type="Button" parent="BoxContainer" unique_id=1898952961]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_pubem")
+theme_override_font_sizes/font_size = 16
 text = "Play"
 
 [node name="ChangeSkin" type="Button" parent="BoxContainer" unique_id=1110209300]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_pubem")
 text = "Current skin: enanan"
 
 [node name="Logo" type="Sprite2D" parent="BoxContainer" unique_id=363697568]
@@ -41,9 +47,22 @@ position = Vector2(111, -153)
 scale = Vector2(2, 2)
 texture = ExtResource("2_detue")
 
+[node name="Scrolling" type="AudioStreamPlayer" parent="BoxContainer" unique_id=1785844494]
+stream = ExtResource("3_detue")
+volume_db = -13.255
+
+[node name="OptionSelected" type="AudioStreamPlayer" parent="BoxContainer" unique_id=1183247197]
+stream = ExtResource("5_bx3wj")
+volume_db = -13.255
+
 [node name="Timer" type="Timer" parent="." unique_id=415581848]
 wait_time = 5.5
 
+[node name="StartTimer" type="Timer" parent="." unique_id=1886100357]
+
+[connection signal="mouse_entered" from="BoxContainer/Play" to="." method="_on_mouse_entered"]
 [connection signal="pressed" from="BoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="mouse_entered" from="BoxContainer/ChangeSkin" to="." method="_on_mouse_entered"]
 [connection signal="pressed" from="BoxContainer/ChangeSkin" to="." method="_on_change_skin_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]

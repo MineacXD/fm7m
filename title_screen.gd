@@ -15,6 +15,7 @@ func _process(_delta: float) -> void:
 		$BoxContainer.modulate = Color(1.0, 1.0, 1.0, trans)
 
 func _on_change_skin_pressed() -> void:
+	$BoxContainer/OptionSelected.play()
 	if Global.skinChange == false:
 		$BoxContainer/ChangeSkin.text = "Current skin: fuyu"
 		Global.skinChange = true
@@ -24,8 +25,19 @@ func _on_change_skin_pressed() -> void:
 
 
 func _on_play_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/maps/map01.tscn")
+	$BoxContainer/OptionSelected.play()
+	$StartTimer.start()
 
 
 func _on_timer_timeout() -> void:
 	timerDone = true
+	$BoxContainer.visible = true
+
+
+func _on_mouse_entered() -> void:
+	if $BoxContainer.visible:
+		$BoxContainer/Scrolling.play()
+
+
+func _on_start_timer_timeout() -> void:
+	get_tree().change_scene_to_file("res://scenes/maps/map01.tscn")
