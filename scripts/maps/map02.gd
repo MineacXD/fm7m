@@ -24,6 +24,7 @@ func _ready() -> void:
 		localSkin = $Dialogue/EnaSchoolUniformChibi
 		$Dialogue/MafuyuSchoolUniformChibi.visible = false
 	AudioStreamPlayerGlobal.stop()
+	Global.PlayerBusy = true
 	show_next_dialogue()
 	$Dialogue/FadeOut/Timer.start()
 

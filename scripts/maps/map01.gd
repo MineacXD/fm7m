@@ -2,7 +2,7 @@ extends Node2D
 const dialogue_list = ["que sueño...", "voy a dormir mientras ella cocina"]
 const dialogue_character_list = ["Cheo", "Cheo"]
 
-const post_dialogue_list = ["...?", "ah, es verdad, May deberia haber terminado el almuerzo ya"] 
+const post_dialogue_list = ["...?", "ah, es verdad, May deberia haber\nterminado el almuerzo ya"] 
 const post_dialogue_character_list = ["Cheo", "Cheo"]
 
 var displaying_dialogue = false
@@ -13,6 +13,18 @@ var player_near = false
 var localSkin
 var bgm = preload("res://sounds/bgm/LoveIsSurvival.mp3")
 var trans = 0
+
+func loadDream():
+	var TheRoot = get_node("/root")  #need this as get_node will stop work once you remove your self from the Tree
+	var ThisScene = get_node("/root/start")
+	Global.PreviousScreen = ThisScene  #variable in Autoload script
+	AudioStreamPlayerGlobal.stream_paused = true
+	#print(ThisScene)
+	#ThisScene.print_tree()
+	TheRoot.remove_child(ThisScene)
+	var NextScene = load("res://scenes/maps/map02.tscn")
+	NextScene = NextScene.instantiate()
+	TheRoot.add_child(NextScene)
 
 func show_next_dialogue():
 	$ChairArea/Dialogue/Dialogue_body.text = dialogue_list[number]
@@ -44,8 +56,16 @@ func _process(_delta: float) -> void:
 		trans += 0.01
 		print(trans)
 		$ChairArea/Dialogue/FadeOut.modulate = Color(1.0, 1.0, 1.0, trans)
-	elif $ChairArea/Dialogue/FadeOut.modulate == Color(1.0, 1.0, 1.0, 1.0):
-		get_tree().change_scene_to_file("res://scenes/maps/map02.tscn")
+	elif $ChairArea/Dialogue/FadeOut.modulate == Color(1.0, 1.0, 1.0, 1.0) and QuestTracker.DreamComplete == false:
+		loadDream()
+	
+	if QuestTracker.DreamComplete and $ChairArea/Dialogue/FadeOut.visible == true:
+		$ChairArea/Dialogue/FadeOut.visible = false
+		number = 0
+		Global.PlayerBusy = true
+		AudioStreamPlayerGlobal.stream_paused = false
+		show_post_dialogue()
+		
 	if QuestTracker.QuestPorkFinished:
 		if player_near:
 			if Input.is_action_just_pressed("interact_enviroment"):
@@ -69,9 +89,10 @@ func _process(_delta: float) -> void:
 					show_post_dialogue()
 				elif number >= dialogue_list.size():
 					$ChairArea/Dialogue.visible = false
-					QuestTracker.QuestPorkStarted = true
 					Global.PlayerBusy = false
+					AudioStreamPlayerGlobal.play()
 					number = 0
+					$ChairArea.visible = false
 				else:
 					show_post_dialogue()
 			

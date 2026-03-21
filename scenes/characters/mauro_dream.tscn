@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://6io4jyfvncrt"]
+
+[ext_resource type="Texture2D" uid="uid://chnymrbtjatxu" path="res://sprites/characters/mauro.png" id="1_2fsx7"]
+[ext_resource type="Script" uid="uid://nla174gtene4" path="res://scenes/characters/mauro_dream.gd" id="2_ckx73"]
+[ext_resource type="AudioStream" uid="uid://kpk3kn8254js" path="res://sounds/sfx/DreamWakeUp2.wav" id="3_vfyjg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ckx73"]
+size = Vector2(586.6666, 533.3334)
+
+[node name="mauroDream" type="Sprite2D" unique_id=500125749]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_2fsx7")
+script = ExtResource("2_ckx73")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=646973337]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1988036949]
+position = Vector2(0, 1.2715656e-05)
+scale = Vector2(0.99999994, 0.99999994)
+shape = SubResource("RectangleShape2D_ckx73")
+
+[node name="Canva" type="CanvasLayer" parent="." unique_id=45139269]
+
+[node name="Fadeout" type="ColorRect" parent="Canva" unique_id=2002953260]
+visible = false
+offset_right = 640.0
+offset_bottom = 480.0
+color = Color(0, 0, 0, 1)
+
+[node name="Timer" type="Timer" parent="." unique_id=362979898]
+wait_time = 6.0
+
+[node name="DreamWakeUp" type="AudioStreamPlayer" parent="." unique_id=150799961]
+stream = ExtResource("3_vfyjg")
+volume_db = -7.53
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

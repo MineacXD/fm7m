@@ -35,7 +35,7 @@ func _on_timer_timeout() -> void:
 
 
 func _on_mouse_entered() -> void:
-	if $BoxContainer.visible:
+	if trans >= 0.3:
 		$BoxContainer/Scrolling.play()
 
 
