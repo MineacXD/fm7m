@@ -5,3 +5,4 @@ var QuestPorkStarted = false
 var QuestPorkFinished = false
 
 var DreamComplete = false
+var PrologueComplete = false

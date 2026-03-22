@@ -52,6 +52,9 @@ func _ready() -> void:
 	AudioStreamPlayerGlobal.play()
 
 func _process(_delta: float) -> void:
+	if QuestTracker.PrologueComplete:
+		get_tree().change_scene_to_file("res://scenes/maps/map03.tscn")
+		queue_free()
 	if ($ChairArea/Dialogue/FadeOut.visible == true) and !($ChairArea/Dialogue/FadeOut.modulate == Color(1.0, 1.0, 1.0, 1.0)):
 		trans += 0.01
 		print(trans)
@@ -92,6 +95,7 @@ func _process(_delta: float) -> void:
 					Global.PlayerBusy = false
 					AudioStreamPlayerGlobal.play()
 					number = 0
+					$Mayling/MizukiSchoolUniformChibi.visible = false
 					$ChairArea.visible = false
 				else:
 					show_post_dialogue()

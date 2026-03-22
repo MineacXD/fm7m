@@ -8,6 +8,9 @@ const post_dialogue_character_list = ["May", "Cheo", "May", "Cheo", "May", "Cheo
 const failed_dialogue_list = ["HOLII", "aqui tienes", "Pero no tienes las 3\nchuletas que te pedi..", "Recuerda que te pedi 3"]
 const failed_dialogue_character_list = ["May", "Cheo", "May", "May"]
 
+const final_dialogue_list = ["May??", "no está aqui...", "debo encontrarla"]
+const final_dialogue_character_list = ["Cheo", "Cheo", "Cheo"]
+
 var displaying_dialogue = false
 #dialogue index number
 var number = 0
@@ -56,6 +59,17 @@ func show_failed_dialogue():
 		$Dialogue/MizukiSchoolUniformChibi.visible = false
 	number = number + 1
 	
+func show_final_dialogue():
+	$Dialogue/Dialogue_body.text = final_dialogue_list[number]
+	$Dialogue/Character.text = final_dialogue_character_list[number]
+	if final_dialogue_character_list[number] == "May":
+		$Dialogue/MizukiSchoolUniformChibi.visible = true
+		localSkin.visible = false
+	elif final_dialogue_character_list[number] == "Cheo":
+		localSkin.visible = true
+		$Dialogue/MizukiSchoolUniformChibi.visible = false
+	number = number + 1
+	
 
 func _process(delta: float) -> void:
 	if Global.z_index_player == z_index:
@@ -68,7 +82,7 @@ func _process(delta: float) -> void:
 			visible = false
 	
 	#checks if dialogue is available
-	if QuestTracker.porkchops == 3:
+	if QuestTracker.porkchops == 3 and !QuestTracker.DreamComplete:
 		if player_near:
 			if Input.is_action_just_pressed("interact_enviroment"):
 				if !$Dialogue.visible:
@@ -82,7 +96,7 @@ func _process(delta: float) -> void:
 					number = 0
 				else:
 					show_post_dialogue()
-	elif QuestTracker.QuestPorkStarted and QuestTracker.porkchops < 3:
+	elif QuestTracker.QuestPorkStarted and QuestTracker.porkchops < 3 and !QuestTracker.DreamComplete:
 		if player_near:
 			if Input.is_action_just_pressed("interact_enviroment"):
 				if !$Dialogue.visible:
@@ -95,6 +109,22 @@ func _process(delta: float) -> void:
 					number = 0
 				else:
 					show_failed_dialogue()
+	elif QuestTracker.DreamComplete:
+		if player_near:
+			if Input.is_action_just_pressed("interact_enviroment"):
+				if !$Dialogue.visible:
+					AudioStreamPlayerGlobal.stop()
+					$Dialogue.visible = true
+					Global.PlayerBusy = true
+					show_final_dialogue()
+				elif number >= final_dialogue_list.size():
+					$Dialogue.visible = false
+					Global.PlayerBusy = false
+					number = 0
+					Global.z_index_player = 0
+					QuestTracker.PrologueComplete = true
+				else:
+					show_final_dialogue()
 	else:
 		if player_near:
 			if Input.is_action_just_pressed("interact_enviroment"):

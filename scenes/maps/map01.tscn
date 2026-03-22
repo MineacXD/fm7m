@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://botasngw883bo" path="res://scripts/maps/map01.gd" id="1_bowtl"]
 [ext_resource type="TileSet" uid="uid://b30fgqheeuty6" path="res://scenes/tiles.tres" id="1_jmtrs"]
 [ext_resource type="Script" uid="uid://iffrmdd5l4xa" path="res://scripts/common/map_layer.gd" id="2_aisj4"]
+[ext_resource type="Texture2D" uid="uid://cxxkw2myy1bgr" path="res://sprites/backgrounds/sky.png" id="2_xrt64"]
 [ext_resource type="Texture2D" uid="uid://bmc6khgxmcn8q" path="res://sprites/tiles/base_blocks.png" id="3_ejywx"]
 [ext_resource type="PackedScene" uid="uid://dikmh24tmfojr" path="res://scenes/characters/player.tscn" id="4_bk7c1"]
 [ext_resource type="Script" uid="uid://b4vouxyefgdrc" path="res://scripts/common/map_layer_2.gd" id="4_ejywx"]
@@ -3236,6 +3237,18 @@ font_color = Color(0, 0, 0, 1)
 
 [node name="start" type="Node2D" unique_id=1901890034]
 script = ExtResource("1_bowtl")
+
+[node name="BG" type="Parallax2D" parent="." unique_id=2127018809]
+scroll_scale = Vector2(0.3, 0.3)
+repeat_size = Vector2(512, 256)
+repeat_times = 2
+
+[node name="Sky" type="Sprite2D" parent="BG" unique_id=892776731]
+texture_filter = 1
+position = Vector2(256, 128)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_xrt64")
+centered = false
 
 [node name="map layer 0" type="TileMapLayer" parent="." unique_id=2017129915]
 texture_filter = 1
