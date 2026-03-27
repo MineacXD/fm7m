@@ -93,9 +93,9 @@ func _process(_delta: float) -> void:
 				elif number >= dialogue_list.size():
 					$ChairArea/Dialogue.visible = false
 					Global.PlayerBusy = false
-					AudioStreamPlayerGlobal.play()
 					number = 0
 					$Mayling/MizukiSchoolUniformChibi.visible = false
+					$Mayling/Paper.visible = true
 					$ChairArea.visible = false
 				else:
 					show_post_dialogue()

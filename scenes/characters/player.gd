@@ -27,7 +27,10 @@ func _physics_process(delta: float) -> void:
 
 		# Handle jump.
 		if Input.is_action_just_pressed("ui_accept") and (is_on_floor() or !$CoyoteJump.is_stopped() or is_in_water):
+			QuestTracker.QuestPorkFinished = true
 			velocity.y = JUMP_VELOCITY
+			if is_in_water:
+				$Swim.play()
 
 		# Get the input direction and handle the movement/deceleration.
 		# As good practice, you should replace UI actions with custom gameplay actions.

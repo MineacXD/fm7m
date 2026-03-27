@@ -2,12 +2,15 @@
 
 [ext_resource type="Script" uid="uid://c1nvv3cmmnpl7" path="res://scenes/characters/interactable_m.gd" id="1_ng3nc"]
 [ext_resource type="Texture2D" uid="uid://buscngs5swtvb" path="res://sprites/characters/Mizuki_School_Uniform_chibi.png" id="1_yp141"]
+[ext_resource type="Texture2D" uid="uid://bvfyhdaevwxud" path="res://sprites/tiles/paper.png" id="3_mkydx"]
 [ext_resource type="Texture2D" uid="uid://68q4ce0b5hyj" path="res://sprites/icons/interact_available.png" id="3_nd6av"]
 [ext_resource type="Texture2D" uid="uid://cpfcx53uoroq4" path="res://sprites/characters/Ena_School_Uniform_chibi.png" id="4_1anw1"]
 [ext_resource type="Texture2D" uid="uid://y1hooddhcb1u" path="res://sprites/gui/dialogue_box_text.png" id="4_lj0pe"]
 [ext_resource type="Texture2D" uid="uid://dugnlvsloo5p1" path="res://sprites/characters/Mafuyu_School_Uniform_chibi.png" id="5_ep51b"]
 [ext_resource type="Texture2D" uid="uid://dj5atqfgyxp1i" path="res://sprites/gui/dialogue_box_name.png" id="5_mdu1w"]
 [ext_resource type="Texture2D" uid="uid://cxeubj112yf5h" path="res://sprites/icons/dialogue_next.png" id="6_mdu1w"]
+[ext_resource type="Texture2D" uid="uid://crphepk86lbr3" path="res://sprites/gui/note.png" id="9_iq8k3"]
+[ext_resource type="AudioStream" uid="uid://cagss70kr1qi8" path="res://sounds/sfx/TurnPage.ogg" id="10_clrkl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ng3nc"]
 size = Vector2(37, 33)
@@ -22,6 +25,13 @@ script = ExtResource("1_ng3nc")
 [node name="MizukiSchoolUniformChibi" type="Sprite2D" parent="." unique_id=1812159737]
 scale = Vector2(0.05, 0.05)
 texture = ExtResource("1_yp141")
+
+[node name="Paper" type="Sprite2D" parent="." unique_id=1790461947]
+visible = false
+texture_filter = 1
+position = Vector2(0, 12.999999)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("3_mkydx")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=699367822]
 
@@ -89,5 +99,19 @@ offset_bottom = 434.0
 text = "holaa"
 label_settings = SubResource("LabelSettings_1anw1")
 
+[node name="Note" type="Sprite2D" parent="Dialogue" unique_id=29283844]
+visible = false
+texture_filter = 1
+position = Vector2(340, 216)
+scale = Vector2(2, 2)
+texture = ExtResource("9_iq8k3")
+
+[node name="TurnPage" type="AudioStreamPlayer" parent="Dialogue/Note" unique_id=247761764]
+stream = ExtResource("10_clrkl")
+
+[node name="Timer" type="Timer" parent="Dialogue/Note" unique_id=1755542177]
+wait_time = 1.5
+
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_entered"]
 [connection signal="area_exited" from="Area2D" to="." method="_on_area_exited"]
+[connection signal="timeout" from="Dialogue/Note/Timer" to="." method="_on_timer_timeout"]

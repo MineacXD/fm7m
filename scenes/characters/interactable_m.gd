@@ -8,14 +8,16 @@ const post_dialogue_character_list = ["May", "Cheo", "May", "Cheo", "May", "Cheo
 const failed_dialogue_list = ["HOLII", "aqui tienes", "Pero no tienes las 3\nchuletas que te pedi..", "Recuerda que te pedi 3"]
 const failed_dialogue_character_list = ["May", "Cheo", "May", "May"]
 
-const final_dialogue_list = ["May??", "no está aqui...", "debo encontrarla"]
-const final_dialogue_character_list = ["Cheo", "Cheo", "Cheo"]
+const final_dialogue_list = ["May??", "photo", "...", "debo encontrarla"]
+const final_dialogue_character_list = ["Cheo", "photo", "Cheo", "Cheo"]
 
 var displaying_dialogue = false
 #dialogue index number
 var number = 0
 var player_near = false
 var localSkin
+var bgmDespair = preload("res://sounds/bgm/LifeOfDespair.mp3")
+var guiBusy = false
 
 func _ready() -> void:
 	# was supposed to be a skin render func
@@ -62,12 +64,25 @@ func show_failed_dialogue():
 func show_final_dialogue():
 	$Dialogue/Dialogue_body.text = final_dialogue_list[number]
 	$Dialogue/Character.text = final_dialogue_character_list[number]
-	if final_dialogue_character_list[number] == "May":
-		$Dialogue/MizukiSchoolUniformChibi.visible = true
+	if final_dialogue_character_list[number] == "photo":
+		$Dialogue/Note/TurnPage.play()
+		$Dialogue/Note/Timer.start()
 		localSkin.visible = false
+		$Dialogue/Character.visible = false
+		$Dialogue/Dialogue_body.visible = false
+		$Dialogue/DialogueNext.visible = false
+		$Dialogue/DialogueBoxName.visible = false
+		$Dialogue/DialogueBoxText.visible = false
+		guiBusy = true
 	elif final_dialogue_character_list[number] == "Cheo":
-		localSkin.visible = true
 		$Dialogue/MizukiSchoolUniformChibi.visible = false
+		localSkin.visible = true
+		$Dialogue/Note.visible = false
+		$Dialogue/Character.visible = true
+		$Dialogue/Dialogue_body.visible = true
+		$Dialogue/DialogueNext.visible = true
+		$Dialogue/DialogueBoxName.visible = true
+		$Dialogue/DialogueBoxText.visible = true
 	number = number + 1
 	
 
@@ -111,7 +126,7 @@ func _process(delta: float) -> void:
 					show_failed_dialogue()
 	elif QuestTracker.DreamComplete:
 		if player_near:
-			if Input.is_action_just_pressed("interact_enviroment"):
+			if Input.is_action_just_pressed("interact_enviroment") and !guiBusy:
 				if !$Dialogue.visible:
 					AudioStreamPlayerGlobal.stop()
 					$Dialogue.visible = true
@@ -148,3 +163,11 @@ func _on_area_exited(area: Area2D) -> void:
 	if area.is_in_group("player"):
 		$InteractAvailable.visible = false
 		player_near = false
+
+
+func _on_timer_timeout() -> void:
+	$Dialogue/Note/Timer.stop()
+	AudioStreamPlayerGlobal.stream = bgmDespair
+	AudioStreamPlayerGlobal.play()
+	$Dialogue/Note.visible = true
+	guiBusy = false
