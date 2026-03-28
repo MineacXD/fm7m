@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bd3uyplvbuola" path="res://scenes/battles/battle_scene_piggy.gd" id="1_7t2bg"]
 [ext_resource type="PackedScene" uid="uid://c7j4jfrualyv6" path="res://scenes/characters/player_battle.tscn" id="1_w03jl"]
+[ext_resource type="Texture2D" uid="uid://cuxomw45tbvlw" path="res://sprites/backgrounds/battle.png" id="2_tbbad"]
 [ext_resource type="AudioStream" uid="uid://cm3u07k456yw5" path="res://sounds/bgm/CirnoTheme.mp3" id="3_vfpt1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7t2bg"]
@@ -12,6 +13,15 @@ size = Vector2(640, 16)
 
 [node name="battle_scene_piggy" type="Node2D" unique_id=1035354395]
 script = ExtResource("1_7t2bg")
+
+[node name="BG" type="Parallax2D" parent="." unique_id=196326102]
+repeat_size = Vector2(1024, 768)
+autoscroll = Vector2(15, 10)
+
+[node name="Battle" type="Sprite2D" parent="BG" unique_id=359574040]
+texture_filter = 1
+texture = ExtResource("2_tbbad")
+centered = false
 
 [node name="BattleTimer" type="Timer" parent="." unique_id=1571116948]
 wait_time = 20.0
@@ -42,8 +52,11 @@ position = Vector2(320, 488)
 shape = SubResource("RectangleShape2D_vfpt1")
 
 [node name="TimeDisplay" type="Label" parent="." unique_id=1372435179]
-offset_right = 40.0
+offset_left = 8.0
+offset_right = 48.0
 offset_bottom = 23.0
+theme_override_colors/font_outline_color = Color(0.24840015, 0.24840018, 0.24840015, 1)
+theme_override_constants/outline_size = 6
 
 [node name="BattleTheme" type="AudioStreamPlayer" parent="." unique_id=45027452]
 stream = ExtResource("3_vfpt1")
