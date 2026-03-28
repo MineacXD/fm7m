@@ -136,7 +136,6 @@ func _process(delta: float) -> void:
 					$Dialogue.visible = false
 					Global.PlayerBusy = false
 					number = 0
-					Global.z_index_player = 0
 					QuestTracker.PrologueComplete = true
 				else:
 					show_final_dialogue()

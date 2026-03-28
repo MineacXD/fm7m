@@ -8,6 +8,7 @@ const post_dialogue_character_list = ["Cheo", "Cheo"]
 var displaying_dialogue = false
 #dialogue index number
 var number = 0
+var fadingStarted = false
 
 var player_near = false
 var localSkin
@@ -53,8 +54,13 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	if QuestTracker.PrologueComplete:
-		get_tree().change_scene_to_file("res://scenes/maps/map03.tscn")
-		queue_free()
+		if !fadingStarted:
+			GuiEffects.startFadeOut(0.005, 1.0)
+			fadingStarted = true
+		if GuiEffects.fadingFinished:
+			get_tree().change_scene_to_file("res://scenes/maps/map03.tscn")
+			queue_free()
+
 	if ($ChairArea/Dialogue/FadeOut.visible == true) and !($ChairArea/Dialogue/FadeOut.modulate == Color(1.0, 1.0, 1.0, 1.0)):
 		trans += 0.01
 		print(trans)

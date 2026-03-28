@@ -3260,11 +3260,19 @@ script = ExtResource("2_aisj4")
 [node name="Area2D3" type="Area2D" parent="map layer 0" unique_id=2136982201 groups=["index definer"]]
 
 [node name="Exit_house" type="CollisionShape2D" parent="map layer 0/Area2D3" unique_id=648981376]
-position = Vector2(398, 160)
+position = Vector2(392, 160)
+shape = SubResource("RectangleShape2D_bk7c1")
+
+[node name="Exit_house2" type="CollisionShape2D" parent="map layer 0/Area2D3" unique_id=1911933609]
+position = Vector2(360, 160)
 shape = SubResource("RectangleShape2D_bk7c1")
 
 [node name="Exit2_house" type="CollisionShape2D" parent="map layer 0/Area2D3" unique_id=1352721080]
-position = Vector2(576, 160)
+position = Vector2(584, 160)
+shape = SubResource("RectangleShape2D_bk7c1")
+
+[node name="Exit2_house2" type="CollisionShape2D" parent="map layer 0/Area2D3" unique_id=1159770144]
+position = Vector2(616, 160)
 shape = SubResource("RectangleShape2D_bk7c1")
 
 [node name="Exit_cave" type="CollisionShape2D" parent="map layer 0/Area2D3" unique_id=1633889915]

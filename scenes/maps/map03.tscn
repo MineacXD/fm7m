@@ -1,5 +1,6 @@
 [gd_scene format=4 uid="uid://kk7l801y88pm"]
 
+[ext_resource type="Script" uid="uid://bp0twin2an7rx" path="res://scripts/maps/map_03.gd" id="1_1ib4j"]
 [ext_resource type="PackedScene" uid="uid://dikmh24tmfojr" path="res://scenes/characters/player.tscn" id="1_jntr6"]
 [ext_resource type="Texture2D" uid="uid://cxxkw2myy1bgr" path="res://sprites/backgrounds/sky.png" id="1_rc453"]
 [ext_resource type="TileSet" uid="uid://b30fgqheeuty6" path="res://scenes/tiles.tres" id="2_ncoxy"]
@@ -8,6 +9,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rc453"]
 
 [node name="map03" type="Node2D" unique_id=261130108]
+script = ExtResource("1_1ib4j")
 
 [node name="BG" type="Parallax2D" parent="." unique_id=1034382669]
 scroll_scale = Vector2(0.3, 0.3)

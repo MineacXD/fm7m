@@ -26,6 +26,7 @@ config/icon="uid://csibnuu3bvwth"
 Global="*res://scripts/global/global.gd"
 QuestTracker="*uid://de5mexasv5ens"
 AudioStreamPlayerGlobal="*uid://d3qgfoxhy1cqa"
+GuiEffects="*uid://duohtedapkt3w"
 
 [display]
 

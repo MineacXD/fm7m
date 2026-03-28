@@ -27,7 +27,7 @@ func _physics_process(delta: float) -> void:
 
 		# Handle jump.
 		if Input.is_action_just_pressed("ui_accept") and (is_on_floor() or !$CoyoteJump.is_stopped() or is_in_water):
-			QuestTracker.QuestPorkFinished = true
+			QuestTracker.DreamComplete = true
 			velocity.y = JUMP_VELOCITY
 			if is_in_water:
 				$Swim.play()
@@ -36,9 +36,9 @@ func _physics_process(delta: float) -> void:
 		# As good practice, you should replace UI actions with custom gameplay actions.
 		var direction := Input.get_axis("ui_left", "ui_right")
 		
-		if Input.is_action_just_pressed("ui_right"):
+		if Input.is_action_pressed("ui_right"):
 			skin.flip_h = true
-		elif Input.is_action_just_pressed("ui_left"):
+		elif Input.is_action_pressed("ui_left"):
 			skin.flip_h = false
 		if direction:
 			velocity.x = direction * SPEED

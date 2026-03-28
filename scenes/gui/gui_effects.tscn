@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://duohtedapkt3w"]
+
+[ext_resource type="Script" uid="uid://bcpcvqawj3nnn" path="res://gui_effects.gd" id="1_j425i"]
+
+[node name="GuiEffects" type="CanvasLayer" unique_id=459012864]
+visible = false
+script = ExtResource("1_j425i")
+
+[node name="Cover" type="ColorRect" parent="." unique_id=723552524]
+offset_right = 640.0
+offset_bottom = 480.0
+color = Color(0, 0, 0, 1)
+
+[node name="readyToFadeIn" type="Timer" parent="." unique_id=458533596]
+one_shot = true
+
+[node name="readyToFadeOut" type="Timer" parent="." unique_id=847379279]
+one_shot = true
+
+[connection signal="timeout" from="readyToFadeIn" to="." method="_on_ready_to_fade_in_timeout"]
+[connection signal="timeout" from="readyToFadeOut" to="." method="_on_ready_to_fade_out_timeout"]
