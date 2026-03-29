@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://bnxw05si4mx07"]
+
+[ext_resource type="Texture2D" uid="uid://bruxep4jx1sw8" path="res://sprites/characters/MikanTsumiki.png" id="1_u5rid"]
+[ext_resource type="Texture2D" uid="uid://68q4ce0b5hyj" path="res://sprites/icons/interact_available.png" id="2_g8t05"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u5rid"]
+size = Vector2(40, 35)
+
+[node name="MikanTsumiki" type="StaticBody2D" unique_id=491164953]
+
+[node name="MikanTsumiki" type="Sprite2D" parent="." unique_id=86459930]
+texture_filter = 1
+position = Vector2(0, 1.9999996)
+scale = Vector2(0.09, 0.09)
+texture = ExtResource("1_u5rid")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=772792411]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2128860247]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_u5rid")
+
+[node name="InteractAvailable" type="Sprite2D" parent="." unique_id=707400232]
+visible = false
+texture_filter = 1
+position = Vector2(13, -17)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_g8t05")
