@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dj4bttg70jvdl"]
+
+[ext_resource type="Script" uid="uid://bt6rg4x34iqd4" path="res://scenes/bullets/ct_bullet.gd" id="1_7flyb"]
+
+[node name="ct_bullet" type="CharacterBody2D" unique_id=1461637411]
+script = ExtResource("1_7flyb")

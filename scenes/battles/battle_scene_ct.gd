@@ -1,11 +1,12 @@
 extends Node2D
+
 var obj_bullet = preload("res://scenes/bullets/piggy_bullet.tscn")
 var velocity = -100
 var trackGenerator = RandomNumberGenerator.new()
 
 func returnToPreviousScene():
 	var TheRoot = get_node("/root")  #need this as get_node will stop work once you remove your self from the Tree
-	var ThisScene = get_node("/root/battle_scene_piggy")
+	var ThisScene = get_node("/root/battle_scene_ct")
 
 	TheRoot.remove_child(ThisScene)
 	ThisScene.call_deferred("free")
@@ -16,7 +17,7 @@ func returnToPreviousScene():
 	Global.BattleFinished = true
 	
 
-func _on_pig_spawn_timer_timeout() -> void:
+func _on_bullet_spawn_timer_timeout() -> void:
 	var new_bullet = obj_bullet.instantiate()
 	var track = floor(trackGenerator.randf_range(0, 2))
 	new_bullet.position = Vector2(0, 240 * track)
@@ -26,5 +27,4 @@ func _process(delta: float) -> void:
 	$TimeDisplay.text = "Tiempo restante: " + str(floori($BattleTimer.time_left))
 
 func _on_battle_timer_timeout() -> void:
-	QuestTracker.porkchops += 1
 	returnToPreviousScene()

@@ -15,6 +15,7 @@ size = Vector2(640, 16)
 script = ExtResource("1_kkfq3")
 
 [node name="BG" type="Parallax2D" parent="." unique_id=690570039]
+visible = false
 repeat_size = Vector2(640, 480)
 autoscroll = Vector2(15, 10)
 

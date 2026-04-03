@@ -12,7 +12,6 @@ func _on_death_area_area_entered(area: Area2D) -> void:
 	$"map layer 0/deathArea/Timer".start()
 
 
-
 func _on_death_timer_timeout() -> void:
 	$Player.position.x = 195.0
 	$Player.position.y = 275.0
