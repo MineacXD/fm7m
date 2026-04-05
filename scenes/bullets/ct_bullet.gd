@@ -1,6 +1,8 @@
 extends CharacterBody2D
 
-var speed = 650
+var speedX = 1000
+var speedY = 0
+var angleBullet = 0
 
 func returnToPreviousScene():
 	var TheRoot = get_node("/root")  #need this as get_node will stop work once you remove your self from the Tree
@@ -15,13 +17,18 @@ func returnToPreviousScene():
 	
 	
 func _physics_process(_delta: float) -> void:
-	velocity.x = -speed
-	if position.x < -785:
-		queue_free()
+	velocity = Vector2(speedX, speedY).rotated(deg_to_rad(angleBullet))
+	rotation = velocity.angle()
 		
 	move_and_slide()
 	
 func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group("player"):
-		Global.BattleFailed = true
-		returnToPreviousScene()
+		Global.lives = Global.lives -1
+		if Global.lives <= 0:
+			Global.BattleFailed = true
+			returnToPreviousScene()
+
+
+func _on_screen_exited() -> void:
+	queue_free()

@@ -1,6 +1,26 @@
 [gd_scene format=3 uid="uid://dj4bttg70jvdl"]
 
 [ext_resource type="Script" uid="uid://bt6rg4x34iqd4" path="res://scenes/bullets/ct_bullet.gd" id="1_7flyb"]
+[ext_resource type="Texture2D" uid="uid://y2oufehlps2a" path="res://sprites/bullets/uspBullet.png" id="2_gmw44"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gmw44"]
+size = Vector2(26, 8)
 
 [node name="ct_bullet" type="CharacterBody2D" unique_id=1461637411]
+rotation = 0.47996554
 script = ExtResource("1_7flyb")
+
+[node name="UspBullet" type="Sprite2D" parent="." unique_id=1096643074]
+texture_filter = 1
+texture = ExtResource("2_gmw44")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=2146081249]
+rect = Rect2(-16, -10, 32, 20)
+
+[node name="Area2D" type="Area2D" parent="." unique_id=662150997]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1949093548]
+shape = SubResource("RectangleShape2D_gmw44")
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_screen_exited"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_entered"]

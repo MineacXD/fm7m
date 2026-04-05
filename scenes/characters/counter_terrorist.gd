@@ -2,8 +2,8 @@ extends StaticBody2D
 const dialogue_list = ["moriras", "eh??", "porque mis compañeros de equipo\njuegan mal", "te pregunté?"]
 const dialogue_character_list = ["CT", "Cheo", "CT", "Cheo"]
 
-const post_dialogue_list = [] 
-const post_dialogue_character_list = []
+const post_dialogue_list = ["yapo deja de moverte\nme quede sin munición", "manco", ":("] 
+const post_dialogue_character_list = ["CT", "Cheo", "CT"]
 
 const failed_dialogue_list = ["ahora muere", "no", "may..."]
 const failed_dialogue_character_list = ["CT", "Cheo", "Cheo"]
@@ -13,6 +13,8 @@ var player_near = false
 #dialogue index number
 var number = 0
 var localSkin
+
+var OnBattle = false
 
 
 
@@ -28,13 +30,12 @@ func _ready() -> void:
 
 func loadBattle():
 	var TheRoot = get_node("/root")  #need this as get_node will stop work once you remove your self from the Tree
-	var ThisScene = get_node("/root/start")
+	var ThisScene = get_node("/root/map03")
 	Global.PreviousScreen = ThisScene  #variable in Autoload script
 	AudioStreamPlayerGlobal.stream_paused = true
-	#print(ThisScene)
-	#ThisScene.print_tree()
+	print(TheRoot)
 	TheRoot.remove_child(ThisScene)
-	var NextScene = load("") #ADD NODE
+	var NextScene = load("res://scenes/battles/battle_scene_ct.tscn") 
 	NextScene = NextScene.instantiate()
 	TheRoot.add_child(NextScene)
 	
@@ -113,7 +114,7 @@ func _process(_delta: float) -> void:
 				else:
 					show_failed_dialogue()
 	else:
-		if player_near:
+		if player_near and !OnBattle:
 			if !$Dialogue.visible:
 				Global.BattleFinished = false
 				$Dialogue.visible = true
@@ -121,6 +122,7 @@ func _process(_delta: float) -> void:
 				show_next_dialogue()
 			if Input.is_action_just_pressed("interact_enviroment"):
 				if number >= dialogue_list.size():
+					OnBattle = true
 					$Dialogue.visible = false
 					Global.PlayerBusy = false
 					number = 0

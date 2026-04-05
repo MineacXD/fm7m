@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://dj4bttg70jvdl"]
+
+[ext_resource type="Script" uid="uid://bt6rg4x34iqd4" path="res://scenes/bullets/ct_bullet.gd" id="1_7flyb"]
+[ext_resource type="Texture2D" uid="uid://y2oufehlps2a" path="res://sprites/bullets/uspBullet.png" id="2_gmw44"]
+
+[node name="ct_bullet" type="CharacterBody2D" unique_id=1461637411]
+script = ExtResource("1_7flyb")
+
+[node name="UspBullet" type="Sprite2D" parent="." unique_id=1096643074]
+texture_filter = 1
+position = Vector2(144, 120)
+texture = ExtResource("2_gmw44")

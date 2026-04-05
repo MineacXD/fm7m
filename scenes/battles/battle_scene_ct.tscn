@@ -4,12 +4,19 @@
 [ext_resource type="Script" uid="uid://bgl5ncxp3qu84" path="res://scenes/battles/battle_scene_ct.gd" id="1_anh76"]
 [ext_resource type="PackedScene" uid="uid://c7j4jfrualyv6" path="res://scenes/characters/player_battle.tscn" id="2_anh76"]
 [ext_resource type="AudioStream" uid="uid://cm3u07k456yw5" path="res://sounds/bgm/CirnoTheme.mp3" id="3_vqkax"]
+[ext_resource type="AudioStream" uid="uid://b0t0oemi1l0it" path="res://sounds/sfx/USP.mp3" id="5_vqkax"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_puf4e"]
 size = Vector2(16, 512)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8f8ou"]
 size = Vector2(640, 16)
+
+[sub_resource type="Curve2D" id="Curve2D_anh76"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -64, -64, 0, 0, 0, 0, 704, -64, 0, 0, 0, 0, 704, 552, 0, 0, 0, 0, -64, 552, 0, 0, 0, 0, -64, -64)
+}
+point_count = 5
 
 [node name="battle_scene_ct" type="Node2D" unique_id=2051336480]
 script = ExtResource("1_anh76")
@@ -29,7 +36,6 @@ wait_time = 20.0
 autostart = true
 
 [node name="BulletSpawnTimer" type="Timer" parent="." unique_id=400009148]
-wait_time = 2.0
 autostart = true
 
 [node name="player_battle" parent="." unique_id=591197528 instance=ExtResource("2_anh76")]
@@ -60,9 +66,32 @@ offset_bottom = 23.0
 theme_override_colors/font_outline_color = Color(0.24840015, 0.24840018, 0.24840015, 1)
 theme_override_constants/outline_size = 6
 
+[node name="LivesDisplay" type="Label" parent="." unique_id=960887499]
+offset_left = 9.0
+offset_top = 24.0
+offset_right = 57.0
+offset_bottom = 47.0
+theme_override_colors/font_outline_color = Color(0.24840015, 0.24840018, 0.24840015, 1)
+theme_override_constants/outline_size = 6
+
 [node name="BattleTheme" type="AudioStreamPlayer" parent="." unique_id=1178394674]
 stream = ExtResource("3_vqkax")
 volume_db = -13.255
 autoplay = true
 
-[connection signal="timeout" from="BattleTimer" to="." method="_ready"]
+[node name="USPfired" type="AudioStreamPlayer" parent="." unique_id=808223601]
+stream = ExtResource("5_vqkax")
+volume_db = -13.255
+
+[node name="Path2D" type="Path2D" parent="." unique_id=405309983]
+curve = SubResource("Curve2D_anh76")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D" unique_id=1931587631]
+position = Vector2(-64, 253.92024)
+rotation = -1.5707964
+progress = 2450.08
+
+[node name="Marker2D" type="Marker2D" parent="Path2D/PathFollow2D" unique_id=1600279950]
+
+[connection signal="timeout" from="BattleTimer" to="." method="_on_battle_timer_timeout"]
+[connection signal="timeout" from="BulletSpawnTimer" to="." method="_on_bullet_spawn_timer_timeout"]
