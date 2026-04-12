@@ -95,7 +95,6 @@ func _process(_delta: float) -> void:
 					Global.BattleFinished = false
 					Global.PlayerBusy = false
 					number = 0
-					queue_free()
 				else:
 					show_post_dialogue()
 	elif Global.BattleFailed == true:
