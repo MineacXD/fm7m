@@ -64,4 +64,4 @@ volume_db = -13.255
 autoplay = true
 
 [connection signal="timeout" from="BattleTimer" to="." method="_on_battle_timer_timeout"]
-[connection signal="timeout" from="PiggySpawnTimer" to="." method="_on_bullet_spawn_timer_timeout"]
+[connection signal="timeout" from="PiggySpawnTimer" to="." method="_on_pig_spawn_timer_timeout"]

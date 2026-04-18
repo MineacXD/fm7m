@@ -1,0 +1,87 @@
+[gd_scene format=3 uid="uid://bavw7kiwe7w8s"]
+
+[ext_resource type="Script" uid="uid://bkh65n2hw01sr" path="res://scenes/characters/counter_terrorist_2.gd" id="1_1k8je"]
+[ext_resource type="Texture2D" uid="uid://vqnffim7m3hh" path="res://sprites/characters/CounterTerrorist.png" id="2_evig4"]
+[ext_resource type="Texture2D" uid="uid://cpfcx53uoroq4" path="res://sprites/characters/Ena_School_Uniform_chibi.png" id="3_orku2"]
+[ext_resource type="Texture2D" uid="uid://dugnlvsloo5p1" path="res://sprites/characters/Mafuyu_School_Uniform_chibi.png" id="4_xrpuu"]
+[ext_resource type="Texture2D" uid="uid://y1hooddhcb1u" path="res://sprites/gui/dialogue_box_text.png" id="5_n2s7s"]
+[ext_resource type="Texture2D" uid="uid://dj5atqfgyxp1i" path="res://sprites/gui/dialogue_box_name.png" id="6_s0ys1"]
+[ext_resource type="Texture2D" uid="uid://cxeubj112yf5h" path="res://sprites/icons/dialogue_next.png" id="7_fgvrm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_amfow"]
+size = Vector2(640, 960)
+
+[sub_resource type="LabelSettings" id="LabelSettings_dp7d4"]
+font_size = 27
+font_color = Color(0, 0, 0, 1)
+
+[node name="CounterTerrorist" type="StaticBody2D" unique_id=1370127584]
+script = ExtResource("1_1k8je")
+
+[node name="CounterTerrorist" type="Sprite2D" parent="." unique_id=1110625199]
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("2_evig4")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=56683902]
+scale = Vector2(0.05, 0.05)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=877690874]
+position = Vector2(-2.861022e-05, 7.629393e-05)
+scale = Vector2(0.99999976, 0.99999976)
+shape = SubResource("RectangleShape2D_amfow")
+
+[node name="Dialogue" type="CanvasLayer" parent="." unique_id=812637204]
+visible = false
+
+[node name="EnaSchoolUniformChibi" type="Sprite2D" parent="Dialogue" unique_id=748607226]
+position = Vector2(142, 178)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_orku2")
+
+[node name="MafuyuSchoolUniformChibi" type="Sprite2D" parent="Dialogue" unique_id=207522047]
+position = Vector2(142, 178)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_xrpuu")
+
+[node name="CounterTerroristDialogue" type="Sprite2D" parent="Dialogue" unique_id=722063887]
+position = Vector2(136, 232)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_evig4")
+
+[node name="DialogueBoxText" type="Sprite2D" parent="Dialogue" unique_id=140682720]
+texture_filter = 1
+position = Vector2(338, 302)
+scale = Vector2(4, 4)
+texture = ExtResource("5_n2s7s")
+
+[node name="DialogueBoxName" type="Sprite2D" parent="Dialogue" unique_id=1129330949]
+texture_filter = 1
+position = Vector2(544, 235)
+scale = Vector2(3, 3)
+texture = ExtResource("6_s0ys1")
+
+[node name="DialogueNext" type="Sprite2D" parent="Dialogue" unique_id=953088763]
+texture_filter = 1
+position = Vector2(559, 419)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_fgvrm")
+
+[node name="Character" type="Label" parent="Dialogue" unique_id=1775766404]
+offset_left = 475.0
+offset_top = 216.0
+offset_right = 604.0
+offset_bottom = 253.0
+text = "May"
+label_settings = SubResource("LabelSettings_dp7d4")
+horizontal_alignment = 1
+
+[node name="Dialogue_body" type="Label" parent="Dialogue" unique_id=557386885]
+offset_left = 67.0
+offset_top = 311.0
+offset_right = 570.0
+offset_bottom = 434.0
+text = "holaa"
+label_settings = SubResource("LabelSettings_dp7d4")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_exited"]

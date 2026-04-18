@@ -27,7 +27,7 @@ size = Vector2(20, 65)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yfivt"]
 size = Vector2(250, 24)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_u41xh"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3s5up"]
 texture = ExtResource("3_ejywx")
 margins = Vector2i(1, 1)
 0:0/0 = 0
@@ -1086,7 +1086,7 @@ margins = Vector2i(1, 1)
 
 [sub_resource type="TileSet" id="TileSet_ix06d"]
 physics_layer_0/collision_layer = 1
-sources/0 = SubResource("TileSetAtlasSource_u41xh")
+sources/0 = SubResource("TileSetAtlasSource_3s5up")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pg117"]
 size = Vector2(156, 81)
@@ -3293,7 +3293,6 @@ tile_set = SubResource("TileSet_ix06d")
 script = ExtResource("2_aisj4")
 
 [node name="Area2D" type="Area2D" parent="map layer 1" unique_id=243892701 groups=["interior"]]
-visible = false
 z_index = 1
 
 [node name="House" type="CollisionShape2D" parent="map layer 1/Area2D" unique_id=717044693]

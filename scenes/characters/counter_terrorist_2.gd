@@ -1,12 +1,12 @@
 extends StaticBody2D
-const dialogue_list = ["moriras", "eh??", "porque mis compañeros de equipo\njuegan mal", "te pregunté?"]
+const dialogue_list = ["CHEO SOY FAN", "who", "caiste en mi trampa", "DE QUE ESTAS HABLANDO"]
 const dialogue_character_list = ["CT", "Cheo", "CT", "Cheo"]
 
-const post_dialogue_list = ["yapo deja de moverte\nme quede sin munición", "manco", ":("] 
-const post_dialogue_character_list = ["CT", "Cheo", "CT"]
+const post_dialogue_list = ["como sabes mi nombre?", "nunca me harás hablar"] 
+const post_dialogue_character_list = ["Cheo", "CT"]
 
-const failed_dialogue_list = ["ahora muere", "no", "may..."]
-const failed_dialogue_character_list = ["CT", "Cheo", "Cheo"]
+const failed_dialogue_list = ["gg ez no team", "aún no..."]
+const failed_dialogue_character_list = ["CT", "Cheo"]
 
 var displaying_dialogue = false
 var player_near = false
@@ -20,7 +20,6 @@ var OnBattle = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	Global.BattleFinished = false
 	# was supposed to be a skin render func
 	if Global.skinChange:
 		localSkin = $Dialogue/MafuyuSchoolUniformChibi
