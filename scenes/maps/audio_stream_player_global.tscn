@@ -9,3 +9,11 @@ stream = SubResource("AudioStreamMP3_bmmm4")
 volume_db = -13.255
 autoplay = true
 script = ExtResource("1_b1wca")
+
+[node name="FadeOutReady" type="Timer" parent="." unique_id=1874298088]
+one_shot = true
+
+[node name="FadeInReady" type="Timer" parent="." unique_id=738558540]
+
+[connection signal="timeout" from="FadeOutReady" to="." method="_on_fade_out_timeout"]
+[connection signal="timeout" from="FadeInReady" to="." method="_on_fade_in_timeout"]

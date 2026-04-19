@@ -1,9 +1,11 @@
 extends Node2D
-
+var bgm = preload("res://sounds/bgm/KillNow.mp3")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	AudioStreamPlayerGlobal.stream = bgm
 	GuiEffects.startFadeIn(0.005, 1.0)
+	AudioStreamPlayerGlobal.startFadeIn(0.005, 0.5)
 
 
 func _on_death_area_area_entered(area: Area2D) -> void:

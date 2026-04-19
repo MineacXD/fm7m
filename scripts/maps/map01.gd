@@ -56,6 +56,7 @@ func _process(_delta: float) -> void:
 	if QuestTracker.PrologueComplete:
 		if !fadingStarted:
 			GuiEffects.startFadeOut(0.005, 1.0)
+			AudioStreamPlayerGlobal.startFadeOut(0.005, 0.1)
 			fadingStarted = true
 		if GuiEffects.fadingFinished:
 			get_tree().change_scene_to_file("res://scenes/maps/map03.tscn")
