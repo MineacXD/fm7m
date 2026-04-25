@@ -18,3 +18,4 @@ func _on_death_timer_timeout() -> void:
 	$Player.position.x = 195.0
 	$Player.position.y = 275.0
 	GuiEffects.fadeIn(0.1)
+	
