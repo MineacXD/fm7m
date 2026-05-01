@@ -14,3 +14,6 @@ var PlayerBusy = false #used when the player cant move
 
 #Switches (literally)
 var PreCastleButtonPressed = false
+
+var StartCastleButtonPressed = false 
+var StartCastlePasscodeDone = false

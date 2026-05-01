@@ -1,0 +1,80 @@
+[gd_scene format=3 uid="uid://duof8cenpsm8x"]
+
+[ext_resource type="Script" uid="uid://bd0ljx5ww72tj" path="res://scenes/characters/button2.gd" id="1_gkk7m"]
+[ext_resource type="AudioStream" uid="uid://n32rvjn3djwr" path="res://sounds/sfx/Stone_button_press.ogg.mp3" id="1_gpgmg"]
+[ext_resource type="Texture2D" uid="uid://cpfcx53uoroq4" path="res://sprites/characters/Ena_School_Uniform_chibi.png" id="2_gkk7m"]
+[ext_resource type="Texture2D" uid="uid://dugnlvsloo5p1" path="res://sprites/characters/Mafuyu_School_Uniform_chibi.png" id="3_hsnvi"]
+[ext_resource type="Texture2D" uid="uid://y1hooddhcb1u" path="res://sprites/gui/dialogue_box_text.png" id="4_a2rhy"]
+[ext_resource type="Texture2D" uid="uid://dj5atqfgyxp1i" path="res://sprites/gui/dialogue_box_name.png" id="5_f4bd3"]
+[ext_resource type="Texture2D" uid="uid://cxeubj112yf5h" path="res://sprites/icons/dialogue_next.png" id="6_ot0qm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xcinb"]
+size = Vector2(9, 9)
+
+[sub_resource type="LabelSettings" id="LabelSettings_av4nr"]
+font_size = 27
+font_color = Color(0, 0, 0, 1)
+
+[node name="Button2" type="StaticBody2D" unique_id=1788556081]
+script = ExtResource("1_gkk7m")
+
+[node name="ButtonPressed" type="AudioStreamPlayer" parent="." unique_id=2046510270]
+stream = ExtResource("1_gpgmg")
+volume_db = 5.725
+
+[node name="Area2D" type="Area2D" parent="." unique_id=40785011]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=870089123]
+shape = SubResource("RectangleShape2D_xcinb")
+
+[node name="Dialogue" type="CanvasLayer" parent="." unique_id=1318546759]
+visible = false
+
+[node name="EnaSchoolUniformChibi" type="Sprite2D" parent="Dialogue" unique_id=1441161507]
+position = Vector2(142, 178)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_gkk7m")
+
+[node name="MafuyuSchoolUniformChibi" type="Sprite2D" parent="Dialogue" unique_id=578911376]
+position = Vector2(142, 178)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_hsnvi")
+
+[node name="DialogueBoxText" type="Sprite2D" parent="Dialogue" unique_id=1197527404]
+texture_filter = 1
+position = Vector2(338, 302)
+scale = Vector2(4, 4)
+texture = ExtResource("4_a2rhy")
+
+[node name="DialogueBoxName" type="Sprite2D" parent="Dialogue" unique_id=128109177]
+texture_filter = 1
+position = Vector2(544, 235)
+scale = Vector2(3, 3)
+texture = ExtResource("5_f4bd3")
+
+[node name="DialogueNext" type="Sprite2D" parent="Dialogue" unique_id=2005005625]
+texture_filter = 1
+position = Vector2(559, 419)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_ot0qm")
+
+[node name="Character" type="Label" parent="Dialogue" unique_id=837580200]
+offset_left = 475.0
+offset_top = 216.0
+offset_right = 604.0
+offset_bottom = 253.0
+text = "May"
+label_settings = SubResource("LabelSettings_av4nr")
+horizontal_alignment = 1
+
+[node name="Dialogue_body" type="Label" parent="Dialogue" unique_id=75121680]
+offset_left = 67.0
+offset_top = 311.0
+offset_right = 570.0
+offset_bottom = 434.0
+text = "holaa"
+label_settings = SubResource("LabelSettings_av4nr")
+
+[connection signal="finished" from="ButtonPressed" to="." method="_on_button_pressed_finished"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_exited"]

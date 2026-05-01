@@ -1,0 +1,120 @@
+[gd_scene format=3 uid="uid://cju5hbqhfvpau"]
+
+[ext_resource type="Script" uid="uid://cgjqffbyw7sa4" path="res://passcode.gd" id="1_m5w8d"]
+[ext_resource type="Texture2D" uid="uid://68q4ce0b5hyj" path="res://sprites/icons/interact_available.png" id="2_dkb27"]
+[ext_resource type="AudioStream" uid="uid://n32rvjn3djwr" path="res://sounds/sfx/Stone_button_press.ogg.mp3" id="2_h8e81"]
+[ext_resource type="Texture2D" uid="uid://cpfcx53uoroq4" path="res://sprites/characters/Ena_School_Uniform_chibi.png" id="3_dkb27"]
+[ext_resource type="Texture2D" uid="uid://dugnlvsloo5p1" path="res://sprites/characters/Mafuyu_School_Uniform_chibi.png" id="4_jtag3"]
+[ext_resource type="Texture2D" uid="uid://y1hooddhcb1u" path="res://sprites/gui/dialogue_box_text.png" id="5_86sbl"]
+[ext_resource type="Texture2D" uid="uid://dj5atqfgyxp1i" path="res://sprites/gui/dialogue_box_name.png" id="6_f2y07"]
+[ext_resource type="Texture2D" uid="uid://cxeubj112yf5h" path="res://sprites/icons/dialogue_next.png" id="7_5x0gm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8kkn1"]
+size = Vector2(9, 9)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ri5b7"]
+font_size = 27
+font_color = Color(0, 0, 0, 1)
+
+[node name="Passcode" type="Node2D" unique_id=178013234]
+script = ExtResource("1_m5w8d")
+
+[node name="InteractAvailable" type="Sprite2D" parent="." unique_id=621108039]
+visible = false
+texture_filter = 1
+position = Vector2(9, -11)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_dkb27")
+
+[node name="ButtonPressed" type="AudioStreamPlayer" parent="." unique_id=360631408]
+stream = ExtResource("2_h8e81")
+volume_db = 5.725
+
+[node name="Area2D" type="Area2D" parent="." unique_id=2027215487]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2041564915]
+shape = SubResource("RectangleShape2D_8kkn1")
+
+[node name="Dialogue" type="CanvasLayer" parent="." unique_id=1575321253]
+visible = false
+
+[node name="DialogueGroup" type="Node2D" parent="Dialogue" unique_id=313834814]
+
+[node name="EnaSchoolUniformChibi" type="Sprite2D" parent="Dialogue/DialogueGroup" unique_id=1340174056]
+position = Vector2(142, 178)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_dkb27")
+
+[node name="MafuyuSchoolUniformChibi" type="Sprite2D" parent="Dialogue/DialogueGroup" unique_id=52295028]
+position = Vector2(142, 178)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_jtag3")
+
+[node name="DialogueBoxText" type="Sprite2D" parent="Dialogue/DialogueGroup" unique_id=1297647353]
+texture_filter = 1
+position = Vector2(338, 302)
+scale = Vector2(4, 4)
+texture = ExtResource("5_86sbl")
+
+[node name="DialogueBoxName" type="Sprite2D" parent="Dialogue/DialogueGroup" unique_id=481585710]
+texture_filter = 1
+position = Vector2(544, 235)
+scale = Vector2(3, 3)
+texture = ExtResource("6_f2y07")
+
+[node name="DialogueNext" type="Sprite2D" parent="Dialogue/DialogueGroup" unique_id=2086964527]
+texture_filter = 1
+position = Vector2(559, 419)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_5x0gm")
+
+[node name="Character" type="Label" parent="Dialogue/DialogueGroup" unique_id=21289270]
+offset_left = 475.0
+offset_top = 216.0
+offset_right = 604.0
+offset_bottom = 253.0
+text = "May"
+label_settings = SubResource("LabelSettings_ri5b7")
+horizontal_alignment = 1
+
+[node name="Dialogue_body" type="Label" parent="Dialogue/DialogueGroup" unique_id=1263632028]
+offset_left = 67.0
+offset_top = 311.0
+offset_right = 570.0
+offset_bottom = 434.0
+text = "holaa"
+label_settings = SubResource("LabelSettings_ri5b7")
+
+[node name="passCode" type="Control" parent="Dialogue" unique_id=405487192]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="passcodeTitle" type="Label" parent="Dialogue/passCode" unique_id=1102459799]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 136.0
+offset_right = 453.0
+offset_bottom = 159.0
+text = "PORFAVOR. INGRESE EL CODIGO."
+
+[node name="TextEdit" type="TextEdit" parent="Dialogue/passCode" unique_id=670389527]
+layout_mode = 0
+offset_left = 216.0
+offset_top = 184.0
+offset_right = 432.0
+offset_bottom = 264.0
+
+[node name="Listo" type="Button" parent="Dialogue/passCode" unique_id=741831463]
+layout_mode = 0
+offset_left = 296.0
+offset_top = 288.0
+offset_right = 352.0
+offset_bottom = 319.0
+text = "Listo"
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_exited"]
+[connection signal="pressed" from="Dialogue/passCode/Listo" to="." method="_on_listo_pressed"]
