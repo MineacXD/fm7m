@@ -9,9 +9,9 @@ func _on_area_entered(area: Area2D) -> void:
 		$Timer.start()
 		
 func _process(_delta: float) -> void:
-	if mapChange and !AudioStreamPlayerGlobal.audioBusy and GuiEffects.fadingFinished:
-		get_tree().change_scene_to_file("res://scenes/maps/map04.tscn")
+	if QuestTracker.map03Done and !AudioStreamPlayerGlobal.audioBusy and GuiEffects.fadingFinished:
+		QuestTracker.map03Done2 = true
 
 
 func _on_timer_timeout() -> void:
-	mapChange = true
+	QuestTracker.map03Done = true

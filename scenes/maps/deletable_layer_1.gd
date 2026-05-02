@@ -12,5 +12,5 @@ func _process(delta: float) -> void:
 		else:
 			visible = false
 			
-	if Global.PreCastleButtonPressed:
+	if Global.StartCastlePasscodeDone:
 		queue_free()

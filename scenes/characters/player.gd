@@ -28,7 +28,7 @@ func _physics_process(delta: float) -> void:
 		# Handle jump.
 		if Input.is_action_just_pressed("ui_accept") and (is_on_floor() or !$CoyoteJump.is_stopped() or is_in_water):
 			velocity.y = JUMP_VELOCITY
-			QuestTracker.DreamComplete = true
+			#QuestTracker.DreamComplete = true
 			if is_in_water:
 				$Swim.play()
 

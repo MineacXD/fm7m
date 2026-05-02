@@ -7,3 +7,15 @@ func _ready() -> void:
 	AudioStreamPlayerGlobal.stream = bgm
 	GuiEffects.startFadeIn(0.005, 1.0)
 	AudioStreamPlayerGlobal.startFadeIn(0.005, 0.1)
+
+
+func _on_death_area_entered(area: Area2D) -> void:
+	GuiEffects.fadeOut(0.05)
+	$"map layer 1/deathArea/Death".play()
+	$"map layer 1/deathArea/Timer".start()
+
+
+func _on_death_timer_timeout() -> void:
+	$Player.position.x = 896.0
+	$Player.position.y = 83.0
+	GuiEffects.fadeIn(0.1)

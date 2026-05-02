@@ -6,6 +6,11 @@ func _ready() -> void:
 	AudioStreamPlayerGlobal.stream = bgm
 	GuiEffects.startFadeIn(0.005, 1.0)
 	AudioStreamPlayerGlobal.startFadeIn(0.005, 0.5)
+	
+func _process(_delta: float) -> void:
+	if QuestTracker.map03Done2:
+		get_tree().change_scene_to_file("res://scenes/maps/map04.tscn")
+		queue_free()
 
 
 func _on_death_area_area_entered(area: Area2D) -> void:

@@ -6,3 +6,6 @@ var QuestPorkFinished = false
 
 var DreamComplete = false
 var PrologueComplete = false
+
+var map03Done = false
+var map03Done2 = false

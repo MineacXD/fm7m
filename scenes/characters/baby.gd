@@ -1,12 +1,12 @@
 extends StaticBody2D
-const dialogue_list = ["CHEO SOY FAN", "who", "caiste en mi trampa", "DE QUE ESTAS HABLANDO"]
-const dialogue_character_list = ["CT", "Cheo", "CT", "Cheo"]
+const dialogue_list = ["...", "...", "...", "AAAAA"]
+const dialogue_character_list = ["Cheo", "Bebé", "Cheo", "Bebé"]
 
-const post_dialogue_list = ["como sabes mi nombre?", "nunca me harás hablar"] 
-const post_dialogue_character_list = ["Cheo", "CT"]
+const post_dialogue_list = ["...", "...", ":("] 
+const post_dialogue_character_list = ["Cheo", "Bebé", "Bebé"]
 
-const failed_dialogue_list = ["gg ez no team", "aún no..."]
-const failed_dialogue_character_list = ["CT", "Cheo"]
+const failed_dialogue_list = [":)", "no", ":("]
+const failed_dialogue_character_list = ["Bebé", "Cheo", "Bebé"]
 
 var displaying_dialogue = false
 var player_near = false
@@ -20,6 +20,7 @@ var OnBattle = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	Global.BattleFinished = false
 	# was supposed to be a skin render func
 	if Global.skinChange:
 		localSkin = $Dialogue/MafuyuSchoolUniformChibi
@@ -30,46 +31,49 @@ func _ready() -> void:
 
 func loadBattle():
 	var TheRoot = get_node("/root")  #need this as get_node will stop work once you remove your self from the Tree
-	var ThisScene = get_node("/root/map03")
+	var ThisScene = get_node("/root/map04")
 	Global.PreviousScreen = ThisScene  #variable in Autoload script
 	AudioStreamPlayerGlobal.stream_paused = true
 	print(TheRoot)
 	TheRoot.remove_child(ThisScene)
-	var NextScene = load("res://scenes/battles/battle_scene_ct.tscn") 
+	var NextScene = load("res://scenes/battles/battle_scene_baby.tscn")  #CHANGE
 	NextScene = NextScene.instantiate()
 	TheRoot.add_child(NextScene)
 	
 func show_next_dialogue():
 	$Dialogue/Dialogue_body.text = dialogue_list[number]
 	$Dialogue/Character.text = dialogue_character_list[number]
-	if dialogue_character_list[number] == "CT":
-		$Dialogue/CounterTerroristDialogue.visible = true
+	if dialogue_character_list[number] == "Bebé":
+		$Dialogue/BabyDialogue.visible = true
 		localSkin.visible = false
 	elif dialogue_character_list[number] == "Cheo":
 		localSkin.visible = true
-		$Dialogue/CounterTerroristDialogue.visible = false
+		$Dialogue/BabyDialogue.visible = false
+		
+	if number == 3:
+		$Dialogue/BabyScream.play()
 	number = number + 1
 
 func show_post_dialogue():
 	$Dialogue/Dialogue_body.text = post_dialogue_list[number]
 	$Dialogue/Character.text = post_dialogue_character_list[number]
-	if post_dialogue_character_list[number] == "CT":
-		$Dialogue/CounterTerroristDialogue.visible = true
+	if post_dialogue_character_list[number] == "Bebé":
+		$Dialogue/BabyDialogue.visible = true
 		localSkin.visible = false
 	elif post_dialogue_character_list[number] == "Cheo":
 		localSkin.visible = true
-		$Dialogue/CounterTerroristDialogue.visible = false
+		$Dialogue/BabyDialogue.visible = false
 	number = number + 1
 			
 func show_failed_dialogue():
 	$Dialogue/Dialogue_body.text = failed_dialogue_list[number]
 	$Dialogue/Character.text = failed_dialogue_character_list[number]
-	if failed_dialogue_character_list[number] == "CT":
-		$Dialogue/CounterTerroristDialogue.visible = true
+	if failed_dialogue_character_list[number] == "Bebé":
+		$Dialogue/BabyDialogue.visible = true
 		localSkin.visible = false
 	elif failed_dialogue_character_list[number] == "Cheo":
 		localSkin.visible = true
-		$Dialogue/CounterTerroristDialogue.visible = false
+		$Dialogue/BabyDialogue.visible = false
 	number = number + 1
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -84,7 +88,7 @@ func _process(_delta: float) -> void:
 			visible = false
 			
 	if Global.BattleFinished == true:
-		if player_near or $Dialogue.visible:
+		if player_near:
 			if !$Dialogue.visible:
 					$Dialogue.visible = true
 					Global.PlayerBusy = true
@@ -98,7 +102,7 @@ func _process(_delta: float) -> void:
 				else:
 					show_post_dialogue()
 	elif Global.BattleFailed == true:
-		if player_near or $Dialogue.visible:
+		if player_near:
 			if !$Dialogue.visible:
 				$Dialogue.visible = true
 				Global.PlayerBusy = true
@@ -113,7 +117,7 @@ func _process(_delta: float) -> void:
 				else:
 					show_failed_dialogue()
 	else:
-		if player_near and !OnBattle or $Dialogue.visible:
+		if player_near and !OnBattle:
 			if !$Dialogue.visible:
 				Global.BattleFinished = false
 				$Dialogue.visible = true

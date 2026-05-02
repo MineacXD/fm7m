@@ -28,14 +28,14 @@ func show_next_dialogue():
 func _process(_delta: float) -> void:
 	if player_near:
 		if Input.is_action_just_pressed("interact_enviroment"):
-			if !$Dialogue.visible:
+			if !$Dialogue.visible and !$ButtonPressed.playing:
 				$Dialogue.visible = true
 				Global.PlayerBusy = true
 				show_next_dialogue()
 			elif number >= dialogue_list.size():
 				$ButtonPressed.play()
-				number = 0
 				$Dialogue.visible = false
+				number = 0
 			else:
 				show_next_dialogue()
 					

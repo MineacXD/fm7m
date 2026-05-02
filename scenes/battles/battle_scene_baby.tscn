@@ -1,0 +1,77 @@
+[gd_scene format=3 uid="uid://bj7t1pipebvui"]
+
+[ext_resource type="Texture2D" uid="uid://cuxomw45tbvlw" path="res://sprites/backgrounds/battle.png" id="1_12oy7"]
+[ext_resource type="Script" uid="uid://xusav4k60wdq" path="res://scenes/battles/battle_scene_baby.gd" id="1_mb32n"]
+[ext_resource type="PackedScene" uid="uid://c7j4jfrualyv6" path="res://scenes/characters/player_battle.tscn" id="2_mb32n"]
+[ext_resource type="AudioStream" uid="uid://cm3u07k456yw5" path="res://sounds/bgm/CirnoTheme.mp3" id="3_0kygh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yj0pd"]
+size = Vector2(16, 512)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7bwni"]
+size = Vector2(640, 16)
+
+[node name="battle_scene_baby" type="Node2D" unique_id=579564123]
+script = ExtResource("1_mb32n")
+
+[node name="BG" type="Parallax2D" parent="." unique_id=400527576]
+repeat_size = Vector2(640, 480)
+autoscroll = Vector2(15, 10)
+
+[node name="Battle" type="Sprite2D" parent="BG" unique_id=1671848828]
+texture_filter = 1
+scale = Vector2(0.625, 0.625)
+texture = ExtResource("1_12oy7")
+centered = false
+
+[node name="BattleTimer" type="Timer" parent="." unique_id=2059449906]
+wait_time = 30.0
+autostart = true
+
+[node name="BulletSpawnTimer" type="Timer" parent="." unique_id=676615612]
+wait_time = 5.0
+autostart = true
+
+[node name="player_battle" parent="." unique_id=591197528 instance=ExtResource("2_mb32n")]
+position = Vector2(88, 232)
+
+[node name="Limits" type="StaticBody2D" parent="." unique_id=1003009695]
+
+[node name="Right" type="CollisionShape2D" parent="Limits" unique_id=1812495758]
+position = Vector2(-8, 240)
+shape = SubResource("RectangleShape2D_yj0pd")
+
+[node name="Left" type="CollisionShape2D" parent="Limits" unique_id=1544338501]
+position = Vector2(648, 240)
+shape = SubResource("RectangleShape2D_yj0pd")
+
+[node name="Up" type="CollisionShape2D" parent="Limits" unique_id=1451830655]
+position = Vector2(320, -8)
+shape = SubResource("RectangleShape2D_7bwni")
+
+[node name="Down" type="CollisionShape2D" parent="Limits" unique_id=270305409]
+position = Vector2(320, 488)
+shape = SubResource("RectangleShape2D_7bwni")
+
+[node name="TimeDisplay" type="Label" parent="." unique_id=1925313865]
+offset_left = 8.0
+offset_right = 48.0
+offset_bottom = 23.0
+theme_override_colors/font_outline_color = Color(0.24840015, 0.24840018, 0.24840015, 1)
+theme_override_constants/outline_size = 6
+
+[node name="LivesDisplay" type="Label" parent="." unique_id=1390197562]
+offset_left = 9.0
+offset_top = 24.0
+offset_right = 57.0
+offset_bottom = 47.0
+theme_override_colors/font_outline_color = Color(0.24840015, 0.24840018, 0.24840015, 1)
+theme_override_constants/outline_size = 6
+
+[node name="BattleTheme" type="AudioStreamPlayer" parent="." unique_id=1305721949]
+stream = ExtResource("3_0kygh")
+volume_db = -13.255
+autoplay = true
+
+[connection signal="timeout" from="BattleTimer" to="." method="_on_battle_timer_timeout"]
+[connection signal="timeout" from="BulletSpawnTimer" to="." method="_on_bullet_spawn_timer_timeout"]

@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://cr3a1h6jiri4w"]
+
+[ext_resource type="Script" uid="uid://nureiach8a0b" path="res://baby_bullet.gd" id="1_savt4"]
+[ext_resource type="Texture2D" uid="uid://bikmdimoi6h43" path="res://sprites/characters/BabyRender.png" id="2_4y3po"]
+[ext_resource type="AudioStream" uid="uid://ctxcpd3rvp05n" path="res://sounds/sfx/Baby_Scream.ogg" id="3_nfguq"]
+[ext_resource type="AudioStream" uid="uid://cc0t5xhdagtjf" path="res://sounds/sfx/Baby_Alarm.ogg" id="4_jigbl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jigbl"]
+
+[node name="baby_bullet" type="CharacterBody2D" unique_id=337676165]
+script = ExtResource("1_savt4")
+
+[node name="BabyRender" type="Sprite2D" parent="." unique_id=1048241557]
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("2_4y3po")
+
+[node name="LockIn" type="Timer" parent="." unique_id=2039685446]
+wait_time = 2.0
+one_shot = true
+
+[node name="BabyScream" type="AudioStreamPlayer" parent="." unique_id=800515542]
+stream = ExtResource("3_nfguq")
+volume_db = -10.495
+
+[node name="Cooldown" type="Timer" parent="." unique_id=332217528]
+one_shot = true
+
+[node name="BabyAlarm" type="AudioStreamPlayer" parent="." unique_id=668921951]
+stream = ExtResource("4_jigbl")
+volume_db = -10.495
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1890077756]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=520950461]
+shape = SubResource("RectangleShape2D_jigbl")
+
+[node name="iFrames" type="Timer" parent="." unique_id=771513678]
+one_shot = true
+
+[connection signal="timeout" from="LockIn" to="." method="_on_lock_in_timeout"]
+[connection signal="timeout" from="Cooldown" to="." method="_on_cooldown_timeout"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_exited"]
+[connection signal="timeout" from="iFrames" to="." method="_on_i_frames_timeout"]
