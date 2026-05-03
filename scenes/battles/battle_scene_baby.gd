@@ -33,6 +33,7 @@ func _process(_delta: float) -> void:
 	$LivesDisplay.text = "Vidas restantes: " + str(Global.lives)
 	if Global.lives <= 0:
 		Global.BattleFailed = true
+		Global.BattleFinished = false
 		returnToPreviousScene()
 
 func _on_battle_timer_timeout() -> void:

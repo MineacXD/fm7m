@@ -87,8 +87,8 @@ func _process(_delta: float) -> void:
 		else:
 			visible = false
 			
-	if Global.BattleFinished == true:
-		if player_near:
+	if Global.BattleFinished and !Global.BattleFailed:
+		if player_near or $Dialogue.visible:
 			if !$Dialogue.visible:
 					$Dialogue.visible = true
 					Global.PlayerBusy = true
@@ -102,7 +102,7 @@ func _process(_delta: float) -> void:
 				else:
 					show_post_dialogue()
 	elif Global.BattleFailed == true:
-		if player_near:
+		if player_near or $Dialogue.visible:
 			if !$Dialogue.visible:
 				$Dialogue.visible = true
 				Global.PlayerBusy = true
@@ -117,7 +117,7 @@ func _process(_delta: float) -> void:
 				else:
 					show_failed_dialogue()
 	else:
-		if player_near and !OnBattle:
+		if (player_near and !OnBattle) or $Dialogue.visible:
 			if !$Dialogue.visible:
 				Global.BattleFinished = false
 				$Dialogue.visible = true

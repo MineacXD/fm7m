@@ -20,7 +20,6 @@ func _process(delta: float) -> void:
 	if lockedIn and floor((target - position).length()) > 10:
 		speed = 500 * delta * (target - position).length()
 		position = position.move_toward(target, speed * delta)
-		print(speed)
 	elif lockedIn and floor((target - position).length()) <= 10:
 		$Cooldown.start()
 		lockedIn = false
