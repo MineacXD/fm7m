@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://duof8cenpsm8x" path="res://scenes/characters/button2.tscn" id="10_cajrg"]
 [ext_resource type="AudioStream" uid="uid://bp7mumu18k4tb" path="res://sounds/sfx/Death.wav" id="12_l3ev7"]
 [ext_resource type="PackedScene" uid="uid://bgim3ipgyic1t" path="res://scenes/characters/baby.tscn" id="13_xfdl7"]
+[ext_resource type="PackedScene" uid="uid://bvquqo4vq4gnu" path="res://scenes/characters/nagito_komaeda.tscn" id="14_l3ev7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_u4g2v"]
 texture = ExtResource("2_2gqml")
@@ -6541,6 +6542,10 @@ shape = SubResource("RectangleShape2D_84ngj")
 z_index = 1
 z_as_relative = false
 position = Vector2(1544, 56)
+
+[node name="NagitoKomaeda" parent="." unique_id=1672140427 instance=ExtResource("14_l3ev7")]
+z_index = 1
+position = Vector2(2568, 559)
 
 [node name="Player" parent="." unique_id=1987459489 instance=ExtResource("5_lb05r")]
 position = Vector2(121, -412)
