@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://cj75tdxia46a1"]
+
+[ext_resource type="Script" uid="uid://dfk2qhfwwri8f" path="res://scenes/bullets/bullet_nagito_3.gd" id="1_1g5v5"]
+[ext_resource type="Texture2D" uid="uid://bbaejc5kp5mal" path="res://sprites/gui/portraits/Nagito.png" id="1_uwxlq"]
+[ext_resource type="AudioStream" uid="uid://ctxcpd3rvp05n" path="res://sounds/sfx/Baby_Scream.ogg" id="2_1g5v5"]
+[ext_resource type="AudioStream" uid="uid://cc0t5xhdagtjf" path="res://sounds/sfx/Baby_Alarm.ogg" id="3_e0vii"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qcwg3"]
+
+[node name="BulletNagito3" type="CharacterBody2D" unique_id=1828341206]
+script = ExtResource("1_1g5v5")
+
+[node name="BabyRender" type="Sprite2D" parent="." unique_id=1355210938]
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("1_uwxlq")
+
+[node name="LockIn" type="Timer" parent="." unique_id=620506831]
+wait_time = 2.0
+one_shot = true
+
+[node name="BabyScream" type="AudioStreamPlayer" parent="." unique_id=45311919]
+stream = ExtResource("2_1g5v5")
+volume_db = -10.495
+
+[node name="Cooldown" type="Timer" parent="." unique_id=680752071]
+one_shot = true
+
+[node name="BabyAlarm" type="AudioStreamPlayer" parent="." unique_id=91995551]
+stream = ExtResource("3_e0vii")
+volume_db = -10.495
+
+[node name="Area2D" type="Area2D" parent="." unique_id=391789894]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=764247105]
+shape = SubResource("RectangleShape2D_qcwg3")
+
+[node name="iFrames" type="Timer" parent="." unique_id=2018408755]
+one_shot = true
+
+[connection signal="timeout" from="LockIn" to="." method="_on_lock_in_timeout"]
+[connection signal="timeout" from="Cooldown" to="." method="_on_cooldown_timeout"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_exited"]
+[connection signal="timeout" from="iFrames" to="." method="_on_i_frames_timeout"]

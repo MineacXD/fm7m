@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://c4lvbm3hml6al"]
+
+[ext_resource type="Script" uid="uid://sn6nfgf5wulu" path="res://bullet_nagito_2.gd" id="1_4aop4"]
+[ext_resource type="Texture2D" uid="uid://cmx4f61ko7spa" path="res://sprites/bullets/knifeProjectile.png" id="2_fv2lr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lfwjj"]
+size = Vector2(26, 8)
+
+[node name="bullet_nagito_2" type="CharacterBody2D" unique_id=601901127]
+script = ExtResource("1_4aop4")
+
+[node name="UspBullet" type="Sprite2D" parent="." unique_id=562472406]
+texture_filter = 1
+texture = ExtResource("2_fv2lr")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=2049798138]
+rect = Rect2(-16, -10, 32, 20)
+
+[node name="Area2D" type="Area2D" parent="." unique_id=706546054]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=475824123]
+shape = SubResource("RectangleShape2D_lfwjj")
