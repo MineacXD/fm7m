@@ -1,9 +1,9 @@
 extends StaticBody2D
-const dialogue_list = ["nagito?", "cheo...", "tu estabas detrás de todo esto...?", "...", "para que exista una verdadera esperanza", "primero debe existir\nuna verdadera desesperación"]
+const dialogue_list = ["nagito?", "cheo...", "tu estabas detrás de todo esto...?", "...", "para que exista\nuna verdadera esperanza", "primero debe existir\nuna verdadera desesperación"]
 const dialogue_character_list = ["Cheo", "Nagito", "Cheo", "Nagito", "Nagito", "Nagito"]
 
-const post_dialogue_list = ["así termina todo?", "ya casi llego May", "aguanta..."] 
-const post_dialogue_character_list = ["Cheo", "Cheo", "Cheo"]
+const failed_dialogue_list = ["que decepcionante...", "la esperanza no venció\na la desesperación", "ya casi llego May", "aguanta...", ""] 
+const failed_dialogue_character_list = ["Nagito", "Nagito", "Cheo", "Cheo", "Cheo"]
 
 var displaying_dialogue = false
 var player_near = false
@@ -12,6 +12,17 @@ var number = 0
 var localSkin
 
 var indicationsDone = false
+
+func loadBattle():
+	var TheRoot = get_node("/root")  #need this as get_node will stop work once you remove your self from the Tree
+	var ThisScene = get_node("/root/map04")
+	Global.PreviousScreen = ThisScene  #variable in Autoload script
+	AudioStreamPlayerGlobal.stop()
+	print(TheRoot)
+	TheRoot.remove_child(ThisScene)
+	var NextScene = load("res://scenes/battles/battle_scene_nagito.tscn") 
+	NextScene = NextScene.instantiate()
+	TheRoot.add_child(NextScene)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -34,13 +45,13 @@ func show_next_dialogue():
 		$Dialogue/NagitoDialog.visible = false
 	number = number + 1
 	
-func show_post_dialogue():
-	$Dialogue/Dialogue_body.text = post_dialogue_list[number]
-	$Dialogue/Character.text = post_dialogue_character_list[number]
-	if post_dialogue_character_list[number] == "Nagito":
+func show_failed_dialogue():
+	$Dialogue/Dialogue_body.text = failed_dialogue_list[number]
+	$Dialogue/Character.text = failed_dialogue_character_list[number]
+	if failed_dialogue_character_list[number] == "Nagito":
 		$Dialogue/NagitoDialog.visible = true
 		localSkin.visible = false
-	elif post_dialogue_character_list[number] == "Cheo":
+	elif failed_dialogue_character_list[number] == "Cheo":
 		localSkin.visible = true
 		$Dialogue/NagitoDialog.visible = false
 	number = number + 1
@@ -57,20 +68,23 @@ func _process(delta: float) -> void:
 			visible = false
 	
 	#checks if dialogue is available
-	if indicationsDone:
+	if Global.BattleFailed:
 		if player_near:
-			if Input.is_action_just_pressed("interact_enviroment"):
-				if !$Dialogue.visible:
-					$Dialogue.visible = true
-					Global.PlayerBusy = true
-					show_post_dialogue()
-				elif number >= post_dialogue_list.size():
-					$Dialogue.visible = false
-					QuestTracker.QuestPorkFinished = true
-					Global.PlayerBusy = false
-					number = 0
-				else:
-					show_post_dialogue()
+			if !$Dialogue.visible:
+				$Dialogue.visible = true
+				Global.PlayerBusy = true
+				show_failed_dialogue()
+			elif number < failed_dialogue_list.size():
+				if Input.is_action_just_pressed("interact_enviroment"):
+					print(failed_dialogue_list.size())
+					show_failed_dialogue()
+			else:
+				$Dialogue.visible = false
+				Global.PlayerBusy = false
+				number = 0
+				Global.BattleFailed = false
+				loadBattle()
+
 	else:
 		if player_near:
 			if Input.is_action_just_pressed("interact_enviroment"):
@@ -82,8 +96,8 @@ func _process(delta: float) -> void:
 					$Dialogue.visible = false
 					QuestTracker.QuestPorkStarted = true
 					Global.PlayerBusy = false
-					indicationsDone = true
 					number = 0
+					loadBattle()
 				else:
 					show_next_dialogue()
 					

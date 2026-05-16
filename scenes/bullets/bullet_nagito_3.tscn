@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://dfk2qhfwwri8f" path="res://scenes/bullets/bullet_nagito_3.gd" id="1_1g5v5"]
 [ext_resource type="Texture2D" uid="uid://bbaejc5kp5mal" path="res://sprites/gui/portraits/Nagito.png" id="1_uwxlq"]
-[ext_resource type="AudioStream" uid="uid://ctxcpd3rvp05n" path="res://sounds/sfx/Baby_Scream.ogg" id="2_1g5v5"]
-[ext_resource type="AudioStream" uid="uid://cc0t5xhdagtjf" path="res://sounds/sfx/Baby_Alarm.ogg" id="3_e0vii"]
+[ext_resource type="AudioStream" uid="uid://ctuggl1b8irpq" path="res://sounds/sfx/SuchHope.ogg" id="3_1g5v5"]
+[ext_resource type="AudioStream" uid="uid://bvvtg373nla2x" path="res://sounds/sfx/NagitoCharge.wav" id="4_1g5v5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qcwg3"]
 
@@ -19,14 +19,14 @@ wait_time = 2.0
 one_shot = true
 
 [node name="BabyScream" type="AudioStreamPlayer" parent="." unique_id=45311919]
-stream = ExtResource("2_1g5v5")
+stream = ExtResource("3_1g5v5")
 volume_db = -10.495
 
 [node name="Cooldown" type="Timer" parent="." unique_id=680752071]
 one_shot = true
 
 [node name="BabyAlarm" type="AudioStreamPlayer" parent="." unique_id=91995551]
-stream = ExtResource("3_e0vii")
+stream = ExtResource("4_1g5v5")
 volume_db = -10.495
 
 [node name="Area2D" type="Area2D" parent="." unique_id=391789894]

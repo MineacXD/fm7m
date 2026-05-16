@@ -1,6 +1,5 @@
 extends Node2D
 var obj_bullet = preload("res://scenes/bullets/pig_bullet.tscn")
-var velocity = -100
 var trackGenerator = RandomNumberGenerator.new()
 
 func returnToPreviousScene():

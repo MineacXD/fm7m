@@ -6,7 +6,7 @@
 
 [node name="AudioStreamPlayerGlobal" type="AudioStreamPlayer" unique_id=1542220283]
 stream = SubResource("AudioStreamMP3_bmmm4")
-volume_db = -13.255
+volume_db = -19.163
 autoplay = true
 script = ExtResource("1_b1wca")
 

@@ -12,7 +12,7 @@ func _physics_process(_delta: float) -> void:
 	
 func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group("player"):
-		Global.lives = Global.lives -1
+		Global.lives -= 1
 		#there used to be a returntopreviousscreen call here
 		#but you should put it on the main battle scene may
 

@@ -18,7 +18,6 @@ func returnToPreviousScene():
 	var NextScene = Global.PreviousScreen
 	TheRoot.add_child(NextScene)
 	AudioStreamPlayerGlobal.stream_paused = false
-	Global.BattleFinished = true
 	
 
 func _on_bullet_spawn_timer_timeout() -> void:
@@ -47,4 +46,5 @@ func _process(delta: float) -> void:
 	$LivesDisplay.text = "Vidas restantes: " + str(Global.lives)
 
 func _on_battle_timer_timeout() -> void:
+	Global.BattleFinished = true
 	returnToPreviousScene()

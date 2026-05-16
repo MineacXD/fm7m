@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://bmr4pxfb5a7fc"]
+
+[ext_resource type="Script" uid="uid://d24hdgay5spq3" path="res://scenes/bullets/bullet_nagito_1.gd" id="1_qv7c4"]
+[ext_resource type="Texture2D" uid="uid://bldfx3k6qphah" path="res://sprites/bullets/spearBullet.png" id="2_xgv8i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vgkct"]
+size = Vector2(20, 191)
+
+[node name="bullet_nagito_1" type="CharacterBody2D" unique_id=1899721177]
+script = ExtResource("1_qv7c4")
+
+[node name="Spear" type="Sprite2D" parent="." unique_id=1582116402]
+texture_filter = 1
+position = Vector2(18, -102)
+scale = Vector2(4, 4)
+texture = ExtResource("2_xgv8i")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=2100617144]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=688597187]
+position = Vector2(17, -95.5)
+shape = SubResource("RectangleShape2D_vgkct")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_entered"]
