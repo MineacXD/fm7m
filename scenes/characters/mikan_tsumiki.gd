@@ -66,7 +66,6 @@ func _process(delta: float) -> void:
 					show_post_dialogue()
 				elif number >= post_dialogue_list.size():
 					$Dialogue.visible = false
-					QuestTracker.QuestPorkFinished = true
 					Global.PlayerBusy = false
 					number = 0
 				else:

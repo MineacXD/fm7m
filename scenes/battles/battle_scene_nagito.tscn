@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://3h30swiv6d55" path="res://sprites/backgrounds/battle2.png" id="2_u0pv7"]
 [ext_resource type="PackedScene" uid="uid://c7j4jfrualyv6" path="res://scenes/characters/player_battle.tscn" id="3_fmufv"]
 [ext_resource type="AudioStream" uid="uid://c0j1akog4nfuh" path="res://sounds/bgm/HopeVsDespair.mp3" id="4_u0pv7"]
-[ext_resource type="AudioStream" uid="uid://b0t0oemi1l0it" path="res://sounds/sfx/USP.mp3" id="5_78qam"]
+[ext_resource type="AudioStream" uid="uid://dwkyts4clbi8k" path="res://sounds/sfx/BA_basic_attack_omori.ogg" id="5_u0pv7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l3ic5"]
 size = Vector2(16, 512)
@@ -32,7 +32,7 @@ texture = ExtResource("2_u0pv7")
 centered = false
 
 [node name="BattleTimer" type="Timer" parent="." unique_id=2111060683]
-wait_time = 60.0
+wait_time = 2.0
 autostart = true
 
 [node name="BulletSpawnTimer1" type="Timer" parent="." unique_id=2039511736]
@@ -92,7 +92,7 @@ volume_db = -16.255
 autoplay = true
 
 [node name="USPfired" type="AudioStreamPlayer" parent="." unique_id=145150003]
-stream = ExtResource("5_78qam")
+stream = ExtResource("5_u0pv7")
 volume_db = -13.255
 
 [node name="Path2D" type="Path2D" parent="." unique_id=664893357]

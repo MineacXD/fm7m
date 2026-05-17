@@ -1,0 +1,98 @@
+[gd_scene format=3 uid="uid://bacnx7ls7ntsg"]
+
+[ext_resource type="Script" uid="uid://clg76r0tsjfll" path="res://scenes/characters/mayling_final.gd" id="1_4q8u7"]
+[ext_resource type="Texture2D" uid="uid://buscngs5swtvb" path="res://sprites/characters/Mizuki_School_Uniform_chibi.png" id="1_ex5r7"]
+[ext_resource type="Texture2D" uid="uid://cpfcx53uoroq4" path="res://sprites/characters/Ena_School_Uniform_chibi.png" id="2_h74ep"]
+[ext_resource type="Texture2D" uid="uid://dugnlvsloo5p1" path="res://sprites/characters/Mafuyu_School_Uniform_chibi.png" id="3_4q8u7"]
+[ext_resource type="Texture2D" uid="uid://68q4ce0b5hyj" path="res://sprites/icons/interact_available.png" id="3_eiffx"]
+[ext_resource type="Texture2D" uid="uid://y1hooddhcb1u" path="res://sprites/gui/dialogue_box_text.png" id="4_eiffx"]
+[ext_resource type="Texture2D" uid="uid://dj5atqfgyxp1i" path="res://sprites/gui/dialogue_box_name.png" id="5_4fjhk"]
+[ext_resource type="Texture2D" uid="uid://cxeubj112yf5h" path="res://sprites/icons/dialogue_next.png" id="6_0a345"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jf6hl"]
+size = Vector2(37, 33)
+
+[sub_resource type="LabelSettings" id="LabelSettings_qroyx"]
+font_size = 27
+font_color = Color(0, 0, 0, 1)
+
+[node name="Mayling" type="StaticBody2D" unique_id=232110134]
+script = ExtResource("1_4q8u7")
+
+[node name="Timer" type="Timer" parent="." unique_id=1482852345]
+wait_time = 3.5
+one_shot = true
+
+[node name="MizukiSchoolUniformChibi" type="Sprite2D" parent="." unique_id=1850209353]
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("1_ex5r7")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=431017701]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1461154685]
+position = Vector2(1.5, 0.5)
+shape = SubResource("RectangleShape2D_jf6hl")
+
+[node name="InteractAvailable" type="Sprite2D" parent="." unique_id=2126430689]
+visible = false
+texture_filter = 1
+position = Vector2(5, -17)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_eiffx")
+
+[node name="Dialogue" type="CanvasLayer" parent="." unique_id=508292964]
+visible = false
+
+[node name="MizukiSchoolUniformChibi" type="Sprite2D" parent="Dialogue" unique_id=1374618054]
+position = Vector2(142, 178)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_ex5r7")
+
+[node name="EnaSchoolUniformChibi" type="Sprite2D" parent="Dialogue" unique_id=1904918536]
+position = Vector2(142, 178)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_h74ep")
+
+[node name="MafuyuSchoolUniformChibi" type="Sprite2D" parent="Dialogue" unique_id=1910018095]
+position = Vector2(142, 178)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_4q8u7")
+
+[node name="DialogueBoxText" type="Sprite2D" parent="Dialogue" unique_id=607885112]
+texture_filter = 1
+position = Vector2(338, 302)
+scale = Vector2(4, 4)
+texture = ExtResource("4_eiffx")
+
+[node name="DialogueBoxName" type="Sprite2D" parent="Dialogue" unique_id=443079761]
+texture_filter = 1
+position = Vector2(544, 235)
+scale = Vector2(3, 3)
+texture = ExtResource("5_4fjhk")
+
+[node name="DialogueNext" type="Sprite2D" parent="Dialogue" unique_id=1261337740]
+texture_filter = 1
+position = Vector2(559, 419)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_0a345")
+
+[node name="Character" type="Label" parent="Dialogue" unique_id=107126629]
+offset_left = 474.0
+offset_top = 216.0
+offset_right = 604.0
+offset_bottom = 253.0
+text = "May"
+label_settings = SubResource("LabelSettings_qroyx")
+horizontal_alignment = 1
+
+[node name="Dialogue_body" type="Label" parent="Dialogue" unique_id=1259872177]
+offset_left = 67.0
+offset_top = 311.0
+offset_right = 570.0
+offset_bottom = 434.0
+text = "holaa"
+label_settings = SubResource("LabelSettings_qroyx")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_exited"]

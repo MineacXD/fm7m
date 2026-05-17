@@ -5,13 +5,16 @@ const dialogue_character_list = ["Cheo", "Nagito", "Cheo", "Nagito", "Nagito", "
 const failed_dialogue_list = ["que decepcionante...", "la esperanza no venció\na la desesperación", "ya casi llego May", "aguanta...", ""] 
 const failed_dialogue_character_list = ["Nagito", "Nagito", "Cheo", "Cheo", "Cheo"]
 
+const post_dialogue_list = ["...gracias", "MUCHAS GRACIAS CHEO!!!", "ESTA ES LA ESPERANZA QUE BUSCABA!!!", "...", "abreme la puerta niño", "..."] 
+const post_dialogue_character_list = ["Nagito", "Nagito", "Nagito", "Cheo", "Cheo", "Nagito"]
+
 var displaying_dialogue = false
 var player_near = false
 #dialogue index number
 var number = 0
 var localSkin
 
-var indicationsDone = false
+var started = false
 
 func loadBattle():
 	var TheRoot = get_node("/root")  #need this as get_node will stop work once you remove your self from the Tree
@@ -55,6 +58,17 @@ func show_failed_dialogue():
 		localSkin.visible = true
 		$Dialogue/NagitoDialog.visible = false
 	number = number + 1
+	
+func show_post_dialogue():
+	$Dialogue/Dialogue_body.text = post_dialogue_list[number]
+	$Dialogue/Character.text = post_dialogue_character_list[number]
+	if post_dialogue_character_list[number] == "Nagito":
+		$Dialogue/NagitoDialog.visible = true
+		localSkin.visible = false
+	elif post_dialogue_character_list[number] == "Cheo":
+		localSkin.visible = true
+		$Dialogue/NagitoDialog.visible = false
+	number = number + 1
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -71,19 +85,38 @@ func _process(delta: float) -> void:
 	if Global.BattleFailed:
 		if player_near:
 			if !$Dialogue.visible:
+				number = 0
 				$Dialogue.visible = true
 				Global.PlayerBusy = true
 				show_failed_dialogue()
-			elif number < failed_dialogue_list.size():
-				if Input.is_action_just_pressed("interact_enviroment"):
-					print(failed_dialogue_list.size())
-					show_failed_dialogue()
-			else:
+			elif number >= failed_dialogue_list.size():
 				$Dialogue.visible = false
 				Global.PlayerBusy = false
 				number = 0
 				Global.BattleFailed = false
+				started = false
 				loadBattle()
+			else:
+				if Input.is_action_just_pressed("interact_enviroment"):
+					show_failed_dialogue()
+
+				
+	elif Global.BattleFinished:
+		if player_near:
+			if !$Dialogue.visible:
+				number = 0
+				$Dialogue.visible = true
+				Global.PlayerBusy = true
+				show_post_dialogue()
+			elif number >= post_dialogue_list.size():
+				$Dialogue.visible = false
+				Global.PlayerBusy = false
+				number = 0
+				Global.BattleFinished = false
+				QuestTracker.FinalBattleDone = true
+			else:
+				if Input.is_action_just_pressed("interact_enviroment"):
+					show_post_dialogue()
 
 	else:
 		if player_near:

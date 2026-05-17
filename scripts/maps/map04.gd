@@ -10,7 +10,9 @@ func _ready() -> void:
 	AudioStreamPlayerGlobal.startFadeIn(0.005, 0.1)
 	
 func _process(delta: float) -> void:
-	pass
+	if QuestTracker.FinalMay:
+		get_tree().change_scene_to_file("res://scenes/maps/the_end.tscn")
+		queue_free()
 
 
 func _on_death_area_entered(area: Area2D) -> void:

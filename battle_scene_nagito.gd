@@ -1,5 +1,6 @@
 extends Node2D
 var bgmLost = preload("res://sounds/bgm/ReDistrust.mp3")
+var bgmWon = preload("res://sounds/bgm/TheDayBeforeTheFuture.mp3")
 
 var obj_bullet1 = preload("res://scenes/bullets/bullet_nagito_1.tscn")
 var obj_bullet2 = preload("res://scenes/bullets/bullet_nagito_2.tscn")
@@ -28,10 +29,21 @@ func returnToPreviousScene():
 
 	TheRoot.remove_child(ThisScene)
 	ThisScene.call_deferred("free")
-	if Global.BattleFailed == true:
+	if Global.lives <= 0:
+		Global.BattleFailed = true
+	else:
+		Global.BattleFinished = true
+	
+	if Global.BattleFailed:
 		AudioStreamPlayerGlobal.stream = bgmLost
-		AudioStreamPlayerGlobal.play()
+	elif Global.BattleFinished:
+		AudioStreamPlayerGlobal.stream = bgmWon
+	AudioStreamPlayerGlobal.play()
+		
+		
 	var NextScene = Global.PreviousScreen
+	print(Global.BattleFinished)
+	print(Global.BattleFailed)
 	TheRoot.add_child(NextScene)
 	
 #bullet 1
@@ -76,10 +88,7 @@ func _process(delta: float) -> void:
 	$TimeDisplay.text = "Tiempo restante: " + str(floori($BattleTimer.time_left))
 	$LivesDisplay.text = "Vidas restantes: " + str(Global.lives)
 	if Global.lives <= 0:
-		Global.BattleFailed = true
-		Global.BattleFinished = false
 		returnToPreviousScene()
 
 func _on_battle_timer_timeout() -> void:
-	Global.BattleFinished = true
 	returnToPreviousScene()

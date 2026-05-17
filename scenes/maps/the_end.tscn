@@ -1,0 +1,188 @@
+[gd_scene format=3 uid="uid://btfwfgo26leo2"]
+
+[ext_resource type="Script" uid="uid://bgrbkdeou8kjv" path="res://scenes/maps/the_end.gd" id="1_7ybe3"]
+[ext_resource type="Texture2D" uid="uid://c71g6ar52u487" path="res://sprites/icons/MizuEna.jpg" id="1_fp26n"]
+[ext_resource type="Texture2D" uid="uid://rh2da2vnbi8c" path="res://sprites/icons/MizuMafu.jpg" id="2_4k5po"]
+[ext_resource type="Texture2D" uid="uid://eyteetf523o" path="res://sprites/icons/MizuEna2.jpg" id="2_ay2xc"]
+[ext_resource type="Texture2D" uid="uid://by8rgaqkb7ud6" path="res://sprites/icons/MizuMafu2.jpg" id="4_7ybe3"]
+[ext_resource type="Texture2D" uid="uid://fm02myb5yojn" path="res://sprites/icons/saimatsu.jpg" id="5_c8esq"]
+[ext_resource type="Texture2D" uid="uid://djqu72pfco6v4" path="res://sprites/icons/hinanami.png" id="6_35io5"]
+[ext_resource type="Texture2D" uid="uid://b80wdne8kptpv" path="res://sprites/icons/proof.png" id="7_d6chb"]
+[ext_resource type="Texture2D" uid="uid://wv8nrkswdxb5" path="res://sprites/icons/tokomaru2.jpg" id="8_xkfrr"]
+[ext_resource type="Texture2D" uid="uid://dbscb0xhe52fu" path="res://sprites/icons/tokomaru.jpg" id="9_0bjl2"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_rttrb"]
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_f3r62"]
+font_size = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_s6aqo"]
+font_size = 26
+
+[sub_resource type="LabelSettings" id="LabelSettings_xhyty"]
+font_size = 40
+font_color = Color(1, 0.590695, 0.92134494, 1)
+
+[node name="TheEnd" type="Control" unique_id=1148844383]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7ybe3")
+
+[node name="Timer" type="Timer" parent="." unique_id=2045490901]
+wait_time = 3.0
+autostart = true
+
+[node name="BG" type="ColorRect" parent="." unique_id=1114797938]
+layout_mode = 0
+offset_right = 640.0
+offset_bottom = 480.0
+color = Color(0, 0, 0, 1)
+
+[node name="Scroll" type="Control" parent="." unique_id=2135354335]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Ena" type="Control" parent="Scroll" unique_id=452984716]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MizuEna" type="Sprite2D" parent="Scroll/Ena" unique_id=368010701]
+position = Vector2(325.1, 274.6)
+scale = Vector2(0.33125, 0.3407608)
+texture = ExtResource("1_fp26n")
+
+[node name="MizuEna2" type="Sprite2D" parent="Scroll/Ena" unique_id=742409124]
+position = Vector2(74.00001, 558.00006)
+rotation = -0.17625366
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("2_ay2xc")
+
+[node name="Mafu" type="Control" parent="Scroll" unique_id=1480950229]
+visible = false
+anchors_preset = 0
+offset_left = 185.0
+offset_top = 60.0
+offset_right = 225.0
+offset_bottom = 100.0
+
+[node name="MizuMafu" type="Sprite2D" parent="Scroll/Mafu" unique_id=1340975295]
+position = Vector2(139, 215)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_4k5po")
+
+[node name="MizuMafu2" type="Sprite2D" parent="Scroll/Mafu" unique_id=1708410023]
+position = Vector2(-92.000015, 504)
+rotation = -0.35529187
+scale = Vector2(0.14, 0.14)
+texture = ExtResource("4_7ybe3")
+
+[node name="Title" type="Label" parent="Scroll" unique_id=2133523801]
+layout_mode = 0
+offset_left = 185.0
+offset_top = 60.0
+offset_right = 475.0
+offset_bottom = 105.0
+text = "Llegaste al final!!!!"
+label_settings = SubResource("LabelSettings_rttrb")
+
+[node name="Body1" type="Label" parent="Scroll" unique_id=18734640]
+layout_mode = 0
+offset_left = 135.0
+offset_top = 483.0
+offset_right = 530.0
+offset_bottom = 666.0
+text = "Creditos (100% real)
+
+ lastmaysunset - por el codigo 
+(y como 3 sprites)
+
+otras franquicias por los sprites y musica 
+(danganronpa, minecraft, cs, bsd, etc)
+
+TÚ POR JUGAR!!!!!!
+"
+label_settings = SubResource("LabelSettings_f3r62")
+horizontal_alignment = 1
+
+[node name="Body2" type="Label" parent="Scroll" unique_id=1611838209]
+layout_mode = 0
+offset_left = 140.0
+offset_top = 968.0
+offset_right = 541.0
+offset_bottom = 1275.0
+text = "dejando todo eso de lado, 
+espero que te haya gustado el jueguito
+se que es medio corto pero le puse 
+ganas
+
+
+
+
+
+
+
+jeje, espero disfrutes/hayas disfrutado
+de tu cumpleaños
+me alegro mucho de haberte conocido,
+Cheo
+
+"
+label_settings = SubResource("LabelSettings_f3r62")
+horizontal_alignment = 1
+
+[node name="Body3" type="Label" parent="Scroll" unique_id=1723460223]
+layout_mode = 0
+offset_left = 277.0
+offset_top = 1664.0
+offset_right = 390.0
+offset_bottom = 1698.0
+text = "Con amor,"
+label_settings = SubResource("LabelSettings_s6aqo")
+horizontal_alignment = 1
+
+[node name="Body4" type="Label" parent="Scroll" unique_id=2022559462]
+layout_mode = 0
+offset_left = 301.0
+offset_top = 2052.0
+offset_right = 406.0
+offset_bottom = 2107.0
+text = "- May"
+label_settings = SubResource("LabelSettings_xhyty")
+
+[node name="Saimatsu" type="Sprite2D" parent="Scroll" unique_id=908510362]
+position = Vector2(528.00006, 851)
+rotation = 0.18128821
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("5_c8esq")
+
+[node name="Hinanami" type="Sprite2D" parent="Scroll" unique_id=701780538]
+position = Vector2(347, 1554)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("6_35io5")
+
+[node name="Proof" type="Sprite2D" parent="Scroll" unique_id=1582286628]
+texture_filter = 1
+position = Vector2(386, 1207)
+texture = ExtResource("7_d6chb")
+
+[node name="Tokomaru2" type="Sprite2D" parent="Scroll" unique_id=819582919]
+position = Vector2(190, 1846.0001)
+rotation = 0.20106763
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("8_xkfrr")
+
+[node name="Tokomaru" type="Sprite2D" parent="Scroll" unique_id=712322356]
+position = Vector2(515, 1884)
+rotation = -0.20156315
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("9_0bjl2")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
