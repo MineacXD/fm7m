@@ -7526,7 +7526,7 @@ script = ExtResource("3_2wcxw")
 [node name="indexDefiner" type="Area2D" parent="map layer 1" unique_id=1878023781 groups=["index definer"]]
 z_index = 1
 z_as_relative = false
-position = Vector2(2508, 970)
+position = Vector2(1, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="map layer 1/indexDefiner" unique_id=847755137]
 position = Vector2(120, -411.25)
@@ -7623,7 +7623,7 @@ z_index = 1
 position = Vector2(3662, 287)
 
 [node name="Player" parent="." unique_id=1987459489 instance=ExtResource("5_lb05r")]
-position = Vector2(2629, 558)
+position = Vector2(122, -412)
 
 [node name="map layer 2" type="TileMapLayer" parent="." unique_id=180275776]
 z_index = 2
