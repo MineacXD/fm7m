@@ -32,7 +32,7 @@ texture = ExtResource("2_u0pv7")
 centered = false
 
 [node name="BattleTimer" type="Timer" parent="." unique_id=2111060683]
-wait_time = 2.0
+wait_time = 60.0
 autostart = true
 
 [node name="BulletSpawnTimer1" type="Timer" parent="." unique_id=2039511736]
