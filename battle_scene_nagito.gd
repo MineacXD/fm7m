@@ -5,6 +5,7 @@ var bgmWon = preload("res://sounds/bgm/TheDayBeforeTheFuture.mp3")
 var obj_bullet1 = preload("res://scenes/bullets/bullet_nagito_1.tscn")
 var obj_bullet2 = preload("res://scenes/bullets/bullet_nagito_2.tscn")
 var obj_bullet3 = preload("res://scenes/bullets/bullet_nagito_3.tscn")
+var obj_bullet4 = preload("res://scenes/bullets/heal.tscn")
 
 #bullet 1 aka pig
 var trackGenerator = RandomNumberGenerator.new()
@@ -82,6 +83,10 @@ func _on_bullet_spawn_timer_timeout3() -> void:
 		var new_bullet = obj_bullet3.instantiate()
 		add_child(new_bullet)
 		bulletsSpawned += 1
+		
+func _on_bullet_spawn_timer_timeout4() -> void:
+	var new_bullet = obj_bullet4.instantiate()
+	add_child(new_bullet)
 	
 	
 func _process(delta: float) -> void:

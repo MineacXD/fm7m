@@ -6,7 +6,7 @@ var lockedIn = false
 var permaTime = 0
 var nearPlayer = false
 var invincible = false
-var speed = 250
+var speed = 5
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -18,7 +18,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if lockedIn and floor((target - position).length()) > 10:
-		speed = 500 * delta * (target - position).length()
+		speed = 5 * (target - position).length()
 		position = position.move_toward(target, speed * delta)
 	elif lockedIn and floor((target - position).length()) <= 10:
 		$Cooldown.start()
@@ -32,7 +32,7 @@ func _process(delta: float) -> void:
 
 
 func _on_lock_in_timeout() -> void:
-	speed = 500
+	speed = 5
 	staticPlayerX = Global.playerX
 	staticPlayerY = Global.playerY
 	target = Vector2(Global.playerX, Global.playerY)

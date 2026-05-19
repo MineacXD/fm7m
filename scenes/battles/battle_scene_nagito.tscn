@@ -47,6 +47,11 @@ autostart = true
 wait_time = 7.0
 autostart = true
 
+[node name="BulletSpawnTimer4" type="Timer" parent="." unique_id=909295907]
+wait_time = 30.0
+one_shot = true
+autostart = true
+
 [node name="player_battle" parent="." unique_id=591197528 instance=ExtResource("3_fmufv")]
 position = Vector2(88, 232)
 scale = Vector2(0.8, 0.8)
@@ -109,3 +114,4 @@ progress = 2450.08
 [connection signal="timeout" from="BulletSpawnTimer1" to="." method="_on_bullet_spawn_timer_timeout1"]
 [connection signal="timeout" from="BulletSpawnTimer2" to="." method="_on_bullet_spawn_timer_timeout2"]
 [connection signal="timeout" from="BulletSpawnTimer3" to="." method="_on_bullet_spawn_timer_timeout3"]
+[connection signal="timeout" from="BulletSpawnTimer4" to="." method="_on_bullet_spawn_timer_timeout4"]
