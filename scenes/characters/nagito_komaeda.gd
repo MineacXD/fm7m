@@ -112,7 +112,6 @@ func _process(delta: float) -> void:
 				$Dialogue.visible = false
 				Global.PlayerBusy = false
 				number = 0
-				Global.BattleFinished = false
 				QuestTracker.FinalBattleDone = true
 			else:
 				if Input.is_action_just_pressed("interact_enviroment"):
